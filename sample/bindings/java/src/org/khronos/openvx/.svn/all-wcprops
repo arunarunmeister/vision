@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repos/!svn/ver/20922/Vision/trunk/sample/bindings/java/src/org/khronos/openvx
+END
+Kernel.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Kernel.java
+END
+Parameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Parameter.java
+END
+Graph.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Graph.java
+END
+Image.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Image.java
+END
+NodeCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/NodeCallback.java
+END
+Status.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Status.java
+END
+Context.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/!svn/ver/20922/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Context.java
+END
+Node.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Node.java
+END
+Scalar.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Scalar.java
+END
+Target.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Target.java
+END
+Buffer.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Buffer.java
+END
+Action.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Action.java
+END
+Reference.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/java/src/org/khronos/openvx/Reference.java
+END

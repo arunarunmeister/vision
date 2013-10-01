@@ -1,0 +1,41 @@
+/*!
+ \mainpage Sample Implementation Overview
+ 
+ \section sec_intro Introduction
+
+ \todo Add introduction for sample implementation
+
+ \section sec_heirarchy Heirarchies
+
+ \todo Add descriptions for objects/type heirarchy
+
+ \dot
+ digraph {
+ label="Object Heirarchy";
+ vx_reference_t -> vx_context_t;
+ vx_context_t -> vx_reference_t;
+ vx_context_t -> vx_kernel_t -> vx_parameter_t;
+ vx_context_t -> vx_graph_t -> vx_node_t;
+ vx_context_t -> vx_target_t;
+ vx_node_t -> vx_image_t;
+ vx_node_t -> vx_buffer_t;
+ vx_node_t -> vx_scalar_t;
+ }
+ \enddot
+
+ \dot
+ digraph {
+ label="Type Heirarchy";
+ vx_reference_t -> vx_graph_t;
+ vx_reference_t -> vx_node_t;
+ vx_reference_t -> vx_parameter_t;
+ vx_reference_t -> vx_image_t;
+ vx_reference_t -> vx_buffer_t;
+ vx_reference_t -> vx_scalar_t;
+ vx_reference_t -> vx_context_t;
+ vx_reference_t -> vx_target_t;
+ vx_reference_t -> vx_list_t;
+ }
+ \enddot
+
+ */

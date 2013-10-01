@@ -1,0 +1,20 @@
+msc {
+    a [label="Client"], b [label="OpenVX"];
+    ---  [label="Kernel and Node Phase"];
+    |||;
+    a=>b [label="vxCreateGraph(context)"];
+    a<<b [label="vx_graph"];
+    |||;
+    a>>b [label="(Optional) vxLoadKernels(context)"];
+    a<<b [label="vx_status"];
+    ...  [label="<repeat>"];
+    |||;
+    a=>b [label="vxGetKernelByEnum(context)"];
+    a<<b [label="vx_kernel"];
+    ...  [label ="<repeat>"];
+    |||;
+    a=>b [label="vxCreateNode(graph)"];
+    a<<b [label="vx_node"];
+    ...  [label="<repeat for each param on each kernel>"];
+    |||;
+}

@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repos/!svn/ver/23286/Vision/trunk/sample/framework
+END
+vx_log.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23285/Vision/trunk/sample/framework/vx_log.c
+END
+vx_image.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23286/Vision/trunk/sample/framework/vx_image.c
+END
+vx_context.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23286/Vision/trunk/sample/framework/vx_context.c
+END
+vx_node.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23286/Vision/trunk/sample/framework/vx_node.c
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/21128/Vision/trunk/sample/framework/concerto.mak
+END
+vx_debug.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/22895/Vision/trunk/sample/framework/vx_debug.c
+END
+vx_target.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23125/Vision/trunk/sample/framework/vx_target.c
+END
+Android.mk
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23155/Vision/trunk/sample/framework/Android.mk
+END
+vx_threshold.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_threshold.c
+END
+vx_reference.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_reference.c
+END
+vx_osal.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/22770/Vision/trunk/sample/framework/vx_osal.c
+END
+vx_delay.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23070/Vision/trunk/sample/framework/vx_delay.c
+END
+vx_graph.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23286/Vision/trunk/sample/framework/vx_graph.c
+END
+vx_keypoint.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_keypoint.c
+END
+vx_remap.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23155/Vision/trunk/sample/framework/vx_remap.c
+END
+vx_rectangle.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_rectangle.c
+END
+vx_matrix.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_matrix.c
+END
+vx_lut.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_lut.c
+END
+vx_scalar.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_scalar.c
+END
+vx_pyramid.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_pyramid.c
+END
+vx_memory.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/22892/Vision/trunk/sample/framework/vx_memory.c
+END
+vx_buffer.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/framework/vx_buffer.c
+END
+vx_coordinates.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_coordinates.c
+END
+vx_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/framework/vx_list.c
+END
+vx_node_api.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/23187/Vision/trunk/sample/framework/vx_node_api.c
+END
+openvx.def
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23155/Vision/trunk/sample/framework/openvx.def
+END
+vx_convolution.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/repos/!svn/ver/23170/Vision/trunk/sample/framework/vx_convolution.c
+END
+vx_distribution.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repos/!svn/ver/23072/Vision/trunk/sample/framework/vx_distribution.c
+END
+vx_parameter.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/23070/Vision/trunk/sample/framework/vx_parameter.c
+END
+vx_kernel.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/framework/vx_kernel.c
+END

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repos/!svn/ver/23287/Vision/trunk/extensions/debug
+END
+openvx-debug.def
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/repos/!svn/ver/21706/Vision/trunk/extensions/debug/openvx-debug.def
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/21706/Vision/trunk/extensions/debug/concerto.mak
+END
+vx_compare.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/debug/vx_compare.c
+END
+vx_fill.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/debug/vx_fill.c
+END
+Android.mk
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/22373/Vision/trunk/extensions/debug/Android.mk
+END
+vx_copy.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/debug/vx_copy.c
+END
+vx_debug_module.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repos/!svn/ver/21706/Vision/trunk/extensions/debug/vx_debug_module.c
+END
+vx_debug_lib.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/23070/Vision/trunk/extensions/debug/vx_debug_lib.c
+END
+vx_check.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23285/Vision/trunk/extensions/debug/vx_check.c
+END
+vx_file.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23287/Vision/trunk/extensions/debug/vx_file.c
+END
+vx_debug_module.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repos/!svn/ver/21706/Vision/trunk/extensions/debug/vx_debug_module.h
+END

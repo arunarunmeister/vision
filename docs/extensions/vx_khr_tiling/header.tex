@@ -1,0 +1,115 @@
+\batchmode
+\documentclass[oneside]{book}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{makeidx}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{ifthen}
+\usepackage[table]{xcolor}
+\usepackage{textcomp}
+\usepackage{alltt}
+\usepackage{ifpdf}
+\ifpdf
+\usepackage[pdftex,
+            pagebackref=true,
+            colorlinks=true,
+            linkcolor=blue,
+            unicode
+           ]{hyperref}
+\else
+\usepackage[ps2pdf,
+            pagebackref=true,
+            colorlinks=true,
+            linkcolor=blue,
+            unicode
+           ]{hyperref}
+\usepackage{pspicture}
+\fi
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\usepackage{sectsty}
+\usepackage[titles]{tocloft}
+\usepackage{doxygen}
+\lstset{language=C++,inputencoding=utf8,basicstyle=\footnotesize,breaklines=true,breakatwhitespace=true,tabsize=4,numbers=left }
+\usepackage{amsmath}
+\makeindex
+\setcounter{tocdepth}{3}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\familydefault}{\sfdefault}
+\hfuzz=15pt
+\setlength{\emergencystretch}{15pt}
+\hbadness=750
+\tolerance=750
+\begin{document}
+\hypersetup{pageanchor=false,citecolor=blue}
+\begin{titlepage}
+\vspace*{2cm}
+\includegraphics[width=\textwidth]{Khronos_Group}
+\vspace*{2cm}
+\begin{center}
+{\Huge The {\bf OpenVX\texttrademark} User Node Tiling Extension} \\
+\vspace*{1cm}
+{\Large Version 1.0} \\
+\vspace*{0.25cm}
+{\Large Document Revision: 1} \\
+\vspace*{1cm}
+{\Large Khronos Vision Working Group} \\
+\vspace*{1cm}
+{\Large {\it Editor:} Shorin Kyo} \\
+{\Large {\it Editor:} Thierry Lepley} \\
+{\Large {\it Editor:} Erik Rainey} \\
+{\Large {\it Editor:} Frank Brill} \\
+\vspace*{1cm}
+{\Large Copyright \copyright 2013 The Khronos Group Inc.} \\
+\end{center}
+\end{titlepage}
+\pagenumbering{roman}
+\begin{copyrightpage}
+Copyright \copyright 2013 The Khronos Group Inc. All Rights Reserved.
+
+This specification is protected by copyright laws and contains material proprietary to the
+Khronos Group, Inc. It or any components may not be reproduced, republished,
+distributed, transmitted, displayed, broadcast, or otherwise exploited in any manner
+without the express prior written permission of the Khronos Group. You may use this
+specification for implementing the functionality therein, without altering or removing any
+trademark, copyright or other notice from the specification, but the receipt or possession
+of this specification does not convey any rights to reproduce, disclose, or distribute its
+contents, or to manufacture, use, or sell anything that it may describe, in whole or in part.
+Khronos Group grants express permission to any current Promoter, Contributor or
+Adopter member of Khronos to copy and redistribute UNMODIFIED versions of this
+specification in any fashion, provided that NO CHARGE is made for the specification
+and the latest available update of the specification for any version of the API is used
+whenever possible. Such distributed specification may be reformatted AS LONG AS the
+contents of the specification are not changed in any way. The specification may be
+incorporated into a product that is sold as long as such product includes significant
+independent work developed by the seller. A link to the current version of this
+specification on the Khronos Group website should be included whenever possible with
+specification distributions.
+
+Khronos Group makes no, and expressly disclaims any, representations or warranties,
+express or implied, regarding this specification, including, without limitation, any implied
+warranties of merchantability or fitness for a particular purpose or non-infringement of
+any intellectual property. Khronos Group makes no, and expressly disclaims any,
+warranties, express or implied, regarding the correctness, accuracy, completeness,
+timeliness, and reliability of the specification. Under no circumstances will the Khronos
+Group, or any of its Promoters, Contributors or Members or their respective partners,
+officers, directors, employees, agents or representatives be liable for any damages,
+whether direct, indirect, special or consequential damages for lost revenues, lost profits,
+or otherwise, arising from or in connection with these materials.
+SAMPLE CODE and EXAMPLES, as identified herein, are expressly depicted herein
+with a "grey" watermark and are included for illustrative purposes only and are expressly
+outside of the Scope as defined in Attachment A - Khronos Group Intellectual Property
+(IP) Rights Policy of the Khronos Group Membership Agreement. A Member or
+Promoter Member shall have no obligation to grant any licenses under any Necessary
+Patent Claims covering SAMPLE CODE and EXAMPLES.
+
+\end{copyrightpage}
+\tableofcontents
+\pagenumbering{arabic}
+\hypersetup{pageanchor=true,citecolor=blue}

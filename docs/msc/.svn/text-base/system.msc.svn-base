@@ -1,0 +1,9 @@
+msc {
+    a [label="Client"], b [label="OpenVX"];
+    a=>b [label="vxCreateContext()", URL="\ref vxCreateContext"];
+    a<<b [label="vx_context context", URL="\ref vx_context"];
+    ...;
+    ...  [label="all calls to OpenVX"];
+    ...;
+    a=>b [label="vxReleaseContext(&context)", URL="\ref vxReleaseContext"];
+}

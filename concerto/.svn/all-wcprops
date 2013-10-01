@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/repos/!svn/ver/23286/Vision/trunk/concerto
+END
+definitions.mak
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/20881/Vision/trunk/concerto/definitions.mak
+END
+doxygen.mak
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repos/!svn/ver/23193/Vision/trunk/concerto/doxygen.mak
+END
+rvct.mak
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repos/!svn/ver/21997/Vision/trunk/concerto/rvct.mak
+END
+os.mak
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/repos/!svn/ver/21235/Vision/trunk/concerto/os.mak
+END
+java.mak
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repos/!svn/ver/20881/Vision/trunk/concerto/java.mak
+END
+scm.mak
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repos/!svn/ver/20881/Vision/trunk/concerto/scm.mak
+END
+clang.mak
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repos/!svn/ver/21336/Vision/trunk/concerto/clang.mak
+END
+dpkg.mak
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repos/!svn/ver/21109/Vision/trunk/concerto/dpkg.mak
+END
+target.mak
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repos/!svn/ver/23286/Vision/trunk/concerto/target.mak
+END
+rules.mak
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repos/!svn/ver/21006/Vision/trunk/concerto/rules.mak
+END
+gcc.mak
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repos/!svn/ver/23044/Vision/trunk/concerto/gcc.mak
+END
+finale.mak
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repos/!svn/ver/21997/Vision/trunk/concerto/finale.mak
+END
+cl.mak
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/repos/!svn/ver/21235/Vision/trunk/concerto/cl.mak
+END
+prelude.mak
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repos/!svn/ver/22435/Vision/trunk/concerto/prelude.mak
+END
+machine.mak
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repos/!svn/ver/20487/Vision/trunk/concerto/machine.mak
+END
+shell.mak
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repos/!svn/ver/20881/Vision/trunk/concerto/shell.mak
+END

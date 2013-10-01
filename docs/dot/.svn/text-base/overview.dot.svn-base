@@ -1,0 +1,15 @@
+
+digraph overview {
+    size=2;
+    node [shape="box"];
+
+    CV_APP [label="Computer Vision\nApplications"];
+    CV_FW [label="High-Level\nVision Framework"];
+    ISV_VE [label="ISV Vision\nEngines"];
+    OPENVX [label="OpenVX" URL="http://www.khronos.org/openvx/"];
+    HW_ACCEL [label="SiVendor\nHardware"];
+
+    CV_APP -> CV_FW -> OPENVX -> HW_ACCEL;
+    CV_APP -> OPENVX;
+    CV_APP -> ISV_VE -> OPENVX;
+}

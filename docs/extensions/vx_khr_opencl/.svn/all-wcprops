@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23220/Vision/trunk/docs/extensions/vx_khr_opencl
+END
+Doxyfile
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repos/!svn/ver/23220/Vision/trunk/docs/extensions/vx_khr_opencl/Doxyfile
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/repos/!svn/ver/23220/Vision/trunk/docs/extensions/vx_khr_opencl/concerto.mak
+END
+header.tex
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/21619/Vision/trunk/docs/extensions/vx_khr_opencl/header.tex
+END
+vx_khr_opencl.dox
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/!svn/ver/23220/Vision/trunk/docs/extensions/vx_khr_opencl/vx_khr_opencl.dox
+END
+doxygen.sty
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/repos/!svn/ver/21619/Vision/trunk/docs/extensions/vx_khr_opencl/doxygen.sty
+END
+footer.tex
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/21619/Vision/trunk/docs/extensions/vx_khr_opencl/footer.tex
+END

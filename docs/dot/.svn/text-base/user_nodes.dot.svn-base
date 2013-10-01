@@ -1,0 +1,37 @@
+digraph user_nodes {
+    size=2;
+    rankdir=TB; 
+    node [shape=oval style=filled fillcolor=lightblue];
+    
+    N0 [label="Luma\nExtract" URL="\ref vxChannelExtractNode"];
+    N1 [label="Blur" URL="\ref vxGaussian3x3Node"];
+    N2 [label="Gradients" URL="\ref vxSobel3x3Node"];
+    N3 [label="Magnitude" URL="\ref vxMagnitudeNode"];
+    N4 [label="Phase" URL="\ref vxPhaseNode"];
+    N5 [label="vxMyKernelNode\n(User)"];
+    N6 [label="vxMyFilterNode\n(User)"];
+
+    I0 [label="UYVY\nImage" shape=box style=filled fillcolor=lightgrey];
+    I1 [label="FOURCC_U8\nImage" shape=box style=filled fillcolor=lightgrey];
+    
+    V0 [label="Virtual\nImage" shape=box style=filled fillcolor=lightgrey];
+    V1 [label="Virtual\nImage" shape=box style=filled fillcolor=lightgrey];
+    V2 [label="Virtual\nImage" shape=box style=filled fillcolor=lightgrey];
+    V3 [label="Virtual\nImage" shape=box style=filled fillcolor=lightgrey];
+    V4 [label="Virtual\nImage" shape=box style=filled fillcolor=lightgrey];
+    V5 [label="Virtual\nImage" shape=box style=filled fillcolor=lightgrey];
+    V6 [label="Virtual\nImage" shape=box style=filled fillcolor=lightgrey];
+    
+    I0 -> N0 -> V0;
+    V0 -> N1 -> V1;
+    V1 -> N2 -> V2;
+          N2 -> V3;
+    V2 -> N3 -> V4;
+    V3 -> N3;
+    V2 -> N4 -> V5;
+    V3 -> N4;
+    V4 -> N5 -> I1;
+    V5 -> N5;
+    V6 -> N5;
+    V0 -> N6 -> V6;
+}

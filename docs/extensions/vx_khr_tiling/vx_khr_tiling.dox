@@ -1,0 +1,61 @@
+/*!
+
+\mainpage User Node Tiling
+The User Node Tiling facility enables optimizations of the user nodes (e.g. locality of execution or parallelism) when performing computation on the image data. Modern processors have a diverse memory hierarchy that varies from relatively small but fast and expensive memory to relatively large but slow and inexpensive memory.  Image data is typically too large to fit into the fast but small memory.  The ability to break the image data into smaller sized units allows for optimized computation on these smaller units with fast memory access or parallel execution of a user node on multiple image tiles simultaneously. The OpenVX Graph Manager possesses the knowledge about the memory hierarchy of the target and is hence in a position to break the image data into smaller units for memory optimization.  Knowledge of the memory access pattern of an algorithm is key for the graph manager to enable optimizations.
+\section sec_purpose Purpose
+The purpose of having a User Node Tiling Function is to:
+\arg Provide a mechanism for user-node programmers to communicate enough information about their computation to enable OpenVX implementations to perform some optimizations that take advantage of locality in the user-node computation, and enable parallelism of execution across local data sets.
+\arg Define a portable method to enable tiling on compatible platforms.
+\arg Define a simple way to enable users to write image processing functions.
+
+\section sec_basic_design Basic Design
+The user node tiling facility is largely composed of two components:
+\arg User Node informs Graph Manager -
+The author of the tilable user kernel informs the graph manager about the data requirements of the algorithm implemented by the kernel. This is primarily done by setting attributes on the kernel (for all nodes of this type), or on the node (for that particular node). This is usually done at kernel definition time (for kernel attributes) or at node creation time (for node attributes).
+\arg Graph Manager informs User Node -
+The graph manager informs the user kernel code about the sub-image or tile that the user kernel code will work on. This is primarily done via macros that the user kernel code can call to get this information at run time for a particular invocation of the user code.
+
+\section sec_glossary Glossary
+Terms and Definitions of the Extension:
+\arg Input tileBlock - the minimum algorithmic size of the rectangle of source pixels needed to compute the function.
+In OpenVX 1.0, this value is unconditionally regarded to be same as the output tileBlock size.
+\arg Output tileBlock - the minimum algorithmic size of the rectangle of destination pixels to be computed by the function.
+\arg Input neighborhood - the additional pixels surrounding the tile in the input images needed to compute the output tile.
+\arg Output neighborhood - the additional (previously computed) pixels surrounding the tile in the output image needed to compute the output tile.
+In OpenVX 1.0, this value is unconditionally regarded as zero in all four directions (top, bottom, left, right).
+\arg Tile - the rectangle of destination pixels to be computed by the function, whose size is greater than or equal to the output tileBlock and less than or equal to the rectangle of the entire image. This value is determined by the OpenVX runtime.
+\arg Border mode - defines both the referred pixel values at the image border (i.e. outside the image boundary), and the behavior of the OpenVX runtime against the tile size determination when the image size happens to be not a multiple of the output tileBlock size.
+\arg Tile memory size - a facility for per-tile memory allocation. The amount allocated will be the amount requested times the number of tileBlocks in the given tile. Lifetime of the given pointer is per invocation of the user function that processes a tile.
+
+\section sec_add_kernel Adding a Tiling Kernel Function
+\snippet examples/vx_tiling_ext.c publish_function
+
+\section sec_example_kernel Example Kernels
+
+Users can add simple filter-style kernels similar to this example of a Gaussian Blur.
+\snippet examples/vx_tiling_gaussian.c gaussian_tiling_function
+
+Users can also add more complex addressing functionality in order to optimize their code
+in this example which uses two inputs.
+\snippet examples/vx_tiling_add.c add_tiling_function
+
+\if OVX_TILING_LANGUAGE
+Users can also write a version which is wrapped in a non-binary-portable macro syntax for
+optimizations on platforms which can support different optimization strategies.
+\include vx_tiling_box.c
+\endif
+
+\section sec_tiling_coding_guidelines Informative Coding Guidelines
+
+User node tiles should be coded in a very specific manner to maintain the
+requirement of <i>data independence</i> in that all blocks should be computed in
+a <i>functionally independent</i> manner. This allows the implement greater
+flexibility in optimization choices. These informal requirements include:
+\arg Avoid using global shared memory.
+\arg Avoid using blocking access protected mechanisms (semaphores, etc).
+\arg Avoid using dynamic memory allocation functions at runtime.
+\arg Avoid calling other functions internally in the tile function.
+\arg Do try to write the your loops in an efficient manner for your compiler environment.
+\todo Add more informative coding practices.
+
+*/

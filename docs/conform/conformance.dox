@@ -1,0 +1,16 @@
+
+/*! 
+ * \defgroup group_conformance Conformance Framework
+ * \brief The OpenVX Conformance Testing Framework.
+ * \details These definitions are strictly for testing conformance to the OpenVX standard.  
+ */
+
+/*! 
+\mainpage Conformance Testing
+Each API, enum and typedef must be exercised by the vx_conformance test.
+
+\section sec_requirements Requirements
+
+\todo Test to check for the presence of each base kernel.
+
+*/

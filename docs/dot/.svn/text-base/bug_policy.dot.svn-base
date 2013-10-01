@@ -1,0 +1,51 @@
+digraph bug_policy {
+	rankdir="LR";
+	node [shape="box" color="black" style="filled" fillcolor="lightblue"];
+	
+	subgraph cluster_cycles {
+		node [color="white"];
+		rank="min";
+		subgraph cluster_api_cycle {
+			node [color="black"];
+			label="API Cycle";
+			API_NEW [shape="circle" label="New"];
+			API_RESOLVED [shape="circle" label="Resolved"];
+		}
+		subgraph cluster_spec_cycle {
+			node [color="black"];
+			label="Specification\nCycle";
+			SPEC_NEW [shape="circle" label="New"];
+			SPEC_ASSIGNED [shape="circle" label="Assign"];
+			SPEC_RESOLVED [shape="circle" label="Resolved"];
+		}
+		subgraph cluster_sample_cycle {
+			node [color="black"];
+			label="Sample\nCycle";
+			SAMPLE_NEW [shape="circle" label="New"];
+			SAMPLE_ASSIGNED [shape="circle" label="Assign"];
+			SAMPLE_RESOLVED [shape="circle" label="Resolved"];
+		}
+		subgraph cluster_conf_cycle {
+			node [color="black"];
+			label="Conformance\nCycle";
+			CONF_NEW [shape="circle" label="New"];
+			CONF_ASSIGNED [shape="circle" label="Assign"];
+			CONF_RESOLVED [shape="circle" label="Resolved"];
+		}
+		DONE [shape="box" label="END"];
+	}
+	subgraph cluster_components {
+		API [label="API Specification"];
+		SPEC [label="Specification\nDocument"];
+		SAMPLE [label="Sample Implementation"];
+		G [label="Graph Nodes"];
+		CONF [label="Conformance\nTest"];
+	}
+	
+	API -> SPEC -> SAMPLE;
+	G -> SPEC -> CONF;
+	API -> API_NEW -> API_RESOLVED -> SPEC;
+	SPEC -> SPEC_NEW -> SPEC_ASSIGNED -> SPEC_RESOLVED -> SAMPLE;
+	SAMPLE -> SAMPLE_NEW -> SAMPLE_ASSIGNED -> SAMPLE_RESOLVED -> CONF;
+	CONF -> CONF_NEW -> CONF_ASSIGNED -> CONF_RESOLVED -> DONE;
+}

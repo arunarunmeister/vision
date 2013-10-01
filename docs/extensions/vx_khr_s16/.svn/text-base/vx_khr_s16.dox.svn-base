@@ -1,0 +1,112 @@
+/*! 
+
+\mainpage Introduction
+ 
+\section sec_overview Overview of Extension
+ 
+This extension is intended to define the subset of behaviors and data types of the signed 16-bit support for OpenVX\texttrademark. 
+ 
+\section sec_changes Changes to the OpenVX 1.0 
+ 
+The S16 extension enhances the input and output types per each kernel defined
+in the OpenVX 1.0 standard. The table below indicate the changes to each kernel
+for input and output.
+
+\subsection sec_s16_inputs Inputs 
+
+ | Kernel               |  U8 | U16 | S16 | S32 | U32 | F32 | 4CC |
+ |:---------------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+ | AbsDiff              | 1.0 |     | ext |     |     |     |     |
+ | Accumulate           | 1.0 |     | ext |     |     |     |     |
+ | AccumulateSquared    | 1.0 |     | ext |     |     |     |     |
+ | AccumulateWeighted   | 1.0 |     | ext |     |     |     |     |
+ | Add                  | 1.0 |     | 1.0 |     |     |     |     |
+ | And                  | 1.0 |     |     |     |     |     |     |
+ | Box3x3               | 1.0 |     | ext |     |     |     |     |
+ | CannyEdgeDetector    | 1.0 |     | ext |     |     |     |     |
+ | ChannelCombine       | 1.0 |     | ext |     |     |     |     |
+ | ChannelExtract       |     |     |     |     |     |     | 1.0 |
+ | ChannelExtractRef    |     |     |     |     |     |     | 1.0 |
+ | ColorConvert         |     |     |     |     |     |     | 1.0 |
+ | ConvertImageDepth    | 1.0 |     | 1.0 |     |     |     |     |
+ | Convolve             | 1.0 |     | ext |     |     |     |     |
+ | Dilate3x3            | 1.0 |     |     |     |     |     |     |
+ | EqualizeHistogram    | 1.0 |     | ext |     |     |     |     |
+ | Erode3x3             | 1.0 |     |     |     |     |     |     |
+ | FastCorners          | 1.0 |     | ext |     |     |     |     |
+ | Gaussian3x3          | 1.0 |     | ext |     |     |     |     |
+ | HarrisCorners        | 1.0 |     | ext |     |     |     |     |
+ | HalfScaleGaussian3x3 | 1.0 |     | ext |     |     |     |     |
+ | Histogram            | 1.0 |     | ext |     |     |     |     |
+ | IntegralImage        | 1.0 |     | ext |     |     |     |     |
+ | Inv                  | 1.0 |     |     |     |     |     |     | 
+ | TableLookup          | 1.0 |     |     |     |     |     |     |
+ | Magnitude            |     |     | 1.0 |     |     |     |     |
+ | MeanStdDev           | 1.0 |     | ext |     |     |     |     |
+ | Median3x3            | 1.0 |     | ext |     |     |     |     |
+ | MinMaxLoc            | 1.0 |     | 1.0 |     |     |     |     |
+ | Multiply             | 1.0 |     | 1.0 |     |     |     |     |
+ | OpticalFlowLK        | 1.0 |     | ext |     |     |     |     |
+ | Or                   | 1.0 |     |     |     |     |     |     |
+ | Phase                |     |     | 1.0 |     |     |     |     |
+ | Pyramid              | 1.0 |     | ext |     |     |     |     |
+ | ScaleImage           | 1.0 |     | ext |     |     |     |     |
+ | Sobel3x3             | 1.0 |     | ext |     |     |     |     |
+ | Subtract             | 1.0 |     | 1.0 |     |     |     |     |
+ | Threshold            | 1.0 |     | ext |     |     |     |     |
+ | Undistort            | 1.0 |     | ext |     |     |     |     |
+ | WarpAffine           | 1.0 |     | ext |     |     |     |     |
+ | WarpPerspective      | 1.0 |     | ext |     |     |     |     |
+ | Xor                  | 1.0 |     |     |     |     |     |     |
+ 
+ \subsection sec_s16_outputs Outputs
+ 
+ | Kernel               |  U8 | U16 | S16 | U32 | S32 | F32 | 4CC |
+ |:---------------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+ | AbsDiff              | 1.0 |     |     |     |     |     |     |
+ | Accumulate           |     |     | 1.0 |     | ext |     |     |
+ | AccumulateSquared    |     |     | 1.0 |     | ext |     |     |
+ | AccumulateWeighted   | 1.0 |     |     |     | ext |     |     |
+ | Add                  |     |     | 1.0 |     | ext |     |     |
+ | And                  | 1.0 |     |     |     |     |     |     |
+ | Box3x3               | 1.0 |     | ext |     |     |     |     |
+ | CannyEdgeDetector    | 1.0 |     |     |     |     |     |     |
+ | ChannelCombine       |     |     |     |     |     |     | 1.0 |
+ | ChannelExtract       | 1.0 |     | ext |     |     |     |     |
+ | ChannelExtractRef    | 1.0 |     |     |     |     |     |     |
+ | ColorConvert         |     |     |     |     |     |     | 1.0 |
+ | ConvertImageDepth    | 1.0 |     | 1.0 |     |     |     |     |
+ | Convolve             | 1.0 |     | 1.0 |     | ext |     |     |
+ | Dilate3x3            | 1.0 |     |     |     |     |     |     |
+ | EqualizeHistogram    | 1.0 |     | ext |     |     |     |     |
+ | Erode3x3             | 1.0 |     |     |     |     |     |     |
+ | FastCorners          | 1.0 |     |     |     |     |     |     |
+ | Gaussian3x3          | 1.0 |     | ext |     |     |     |     |
+ | HarrisCorners        | 1.0 |     |     |     |     |     |     |
+ | HalfScaleGaussian3x3 | 1.0 |     | ext |     |     |     |     |
+ | Histogram            |     |     |     |     | 1.0 |     |     |
+ | IntegralImage        |     |     |     | 1.0 |     |     |     |
+ | Inv                  | 1.0 |     |     |     |     |     |     |
+ | TableLookup          | 1.0 |     |     |     |     |     |     |
+ | Magnitude            | 1.0 |     | ext |     |     |     |     |
+ | MeanStdDev           |     |     |     |     |     | 1.0 |     |
+ | Median3x3            | 1.0 |     | ext |     |     |     |     |
+ | MinMaxLoc            | 1.0 |     | 1.0 |     | 1.0 |     |     |
+ | Multiply             | 1.0 |     | 1.0 |     |     |     |     |
+ | OpticalFlowLK        |     |     |     | 1.0 |     |     |     |
+ | Or                   | 1.0 |     |     |     |     |     |     |
+ | Phase                | 1.0 |     |     |     |     |     |     |
+ | Pyramid              | 1.0 |     | 1.0/ext |     |     |     |     |
+ | ScaleImage           | 1.0 |     | ext |     |     |     |     |
+ | Sobel3x3             |     |     | 1.0 |     | ext |     |     |
+ | Subtract             |     |     | 1.0 |     | ext |     |     |
+ | Threshold            | 1.0 |     | ext |     |     |     |     |
+ | Undistort            | 1.0 |     | ext |     |     |     |     |
+ | WarpAffine           | 1.0 |     | ext |     |     |     |     |
+ | WarpPerspective      | 1.0 |     | ext |     |     |     |     |
+ | Xor                  | 1.0 |     |     |     |     |     |     |
+
+\todo List each kernel and the valid combinations of inputs/outputs that can't be
+shown on this table.
+
+*/

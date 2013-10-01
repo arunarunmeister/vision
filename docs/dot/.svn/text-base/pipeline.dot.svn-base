@@ -1,0 +1,12 @@
+digraph graph_pipeline {
+    size=2;
+    node [shape=box];
+
+    A [label="Color Convert" shape=cicle];
+    B [label="Channel Extract" shape=cicle];
+    C [label="Sobel" shape=cicle];
+    D [label="<user defined node>" shape=cicle];
+    E [label="<feature tracker>" shape=cicle];
+
+    A -> B -> C -> D -> E;
+}

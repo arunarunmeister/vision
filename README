@@ -1,0 +1,259 @@
+OpenVX
+======
+The Khronos Open Vision Acceleration Standard informative README. 
+
+Supported systems:
+------------------
+1. Linux
+2. Darwin/OSX
+3. Windows NT (Cygwin or native)
+
+Required packages to build the documentation:
+1. doxygen - Documentation Tools
+2. graphviz - Generates graphs from text descriptions
+3. mscgen - Generates call sequence charts
+4. texlive - Used to convert the HTML documents into latex
+5. pdflatex - Converts the latex to a PDF document.
+6. (Windows) - MinGW make.exe, VS2005 at least.
+
+Installing the required packages
+--------------------------------
+
+For documentation builing the following configurations are needed. 
+
+Linux
+-----
+
+On Ubuntu just issue an apt-get for these:
+
+    $ sudo apt-get install doxygen graphviz mscgen texlive texlive-latex-base texlive-math-extra texlive-font-utils dpkg-dev latex-xcolor ghostscript
+
+Windows (Cygwin)
+----------------
+
+It is recommended that Windows users install Cygwin to build OpenVX
+and its documentation.  Obtain and run the setup utility at:
+
+    http://cygwin.com/setup.exe
+
+You MUST manually select the gcc4 package in the cygwin setup utility
+to get version 4.5.3 of the gcc, since the default version (3.4.4)
+will not compile OpenVX.
+
+In addition, go to http://sourceware.org/cygwinports/ and follow the
+instructions there to install the Cygwin Ports and select the
+additional packages below in the Cygwin setup utility:
+
+1. doxygen
+2. mscgen
+3. graphviz
+
+Finally, you will also need the native native Windows texlive package
+by downloading install-tl.zip from:
+
+http://www.tug.org/texlive/acquire-netinstall.html.
+
+Unpack the zip file, right-click on install-tl-advanced.bat, and
+choose "Run as adminstrator".  In the dialog box, either keep the
+default "scheme-full" (~4GB) or if you don't need all the language
+collections, you can change to the "medium" scheme, and then change
+the standard collections to "select all" (~2.5GB).  You MUST add all
+of the standard collections, because the default set of collections
+for the medium scheme is not sufficient to built the OpenVX
+documentation.  Some users may also want to change the default paper
+size from "A4" to "letter".  Finally, click on "Install TeX Live".
+
+Windows (native)
+----------------
+
+It may be possible to build the documentation in Windows without
+Cygwin, but this is untested.  If you try this, you will need to
+install the native windows versions of doxygen, Graphviz, and Mscgen,
+as well as Texlive (using the texlive instructions above):
+
+- Doxygen:  http://www.stack.nl/~dimitri/doxygen/download.html
+- Graphviz:  http://www.graphviz.org/Download_windows.php
+- Mscgen:  http://www.mcternan.me.uk/mscgen/
+- Texlive:  http://www.tug.org/texlive/acquire-netinstall.html
+
+Then you will need to put the following into your PATH variable:
+
+1. C:\MinGW\bin
+2. C:\Program Files\doxygen\bin
+3. C:\Program Files (x86)\Graphviz\bin
+4. C:\Program Files (x86)\Mscgen
+5. <texlive path> (default C:\texlive\2012\bin\win32)
+6. <pdflatex path> (normally in the texlive path)
+
+Mac OSX 
+-------
+
+Mac OSX Users need to use either MacPorts or Fink (or other favorite package
+manager) to install the same set of packages above.
+
+Building OpenVX
+---------------
+
+> [Windows NT] For building the code, adding the path to "make.exe" 
+to the PATH is required after the "vcvarsall.bat" batch file (which configures
+the enviroment for compiling with VC) is executed from a CMD window. Make.exe
+can be obtained from installing _MinGW_ at http://www.mingw.org.
+
+Once the correct packages above are installed, the sample
+implementation can be built by typing "make" in the OpenVX
+installation directory (e.g., "trunk").
+
+    $ cd trunk
+    $ make
+
+Outputs are placed in 
+
+    out/$(TARGET_OS)/$(TARGET_CPU)/$(TARGET_BUILD)/
+    
+These variables are visible in the make output. This will be refered to as TARGET_OUT, though this may not be present in the actual environment 
+(users could define this themselves). 
+
+To install (you may need "sudo" in front of this on unix systems):
+
+    $ make install
+
+To generate the documentation (outputs are in docs/*/html or
+docs/*/latex/refman.pdf, where * is either specification or sample):
+
+    $ make docs
+
+Documents end up in out/docs/<target>/html or latex.
+
+If your PDF file is missing a table of contents, run:
+    $ cd out/docs/specification/latex
+    $ pdflatex refman
+
+Runing the sample implementation unit test without installing:
+--------------------------------------------------------------
+
+In any environment, PATHs may need to be altered to allow loading dynamic 
+modules. 
+
+On Linux
+--------
+
+Testing OpenVX (with a 64bit machine):
+
+    $ cd raw
+    $ LD_LIBRARY_PATH=../$(TARGET_OUT) ../$(TARGET_OUT)/vx_test
+
+On Windows (Cygwin)
+-------------------
+
+TARGET_OUT is usually 
+
+    out/CYGWIN/X86/release
+
+Commands:
+
+    $ cd raw
+    $ LD_LIBRARY_PATH=../$(TARGET_OUT) ../$(TARGET_OUT)/vx_test
+
+On Windows (native)
+-------------------
+
+TARGET_OUT is ususally 
+
+    out\Windows_NT\x86\release
+
+Commands:
+
+    C:\> copy raw\*.* %TARGET_OUT%
+    C:\> pushd %TARGET_OUT% && vx_test.exe
+
+On Mac OSX (from repos/Vision/trunk)
+------------------------------------
+
+TARGET_OUT is usually 
+
+    out/DARWIN/x86_64/release
+
+Commands:
+
+    $ cd raw
+    $ DYLD_LIBRARY_PATH=../$(TARGET_OUT) ../$(TARGET_OUT)/vx_test
+
+Installing OpenVX on a Debian-ish Linux:
+====================================
+
+On Linux, the sample implementation for OpenVX is packaged after a make in
+
+    out/LINUX/x86_64/openvx-*.deb
+ 
+Installing DEB package
+
+    $ dpkg-deb -i <path>/openvx-*.deb
+
+
+Debugging the Sample Implementation
+===================================
+
+To build in debug mode (this will output in the out/.../debug folder rather
+than out/.../release, thus if you defined TARGET_OUT, you'll have to change it. 
+
+    $ export NO_OPTIMIZE=1
+    $ make
+
+or 
+
+    $ make TARGET_BUILD=debug
+
+To enable traces (printfs/logs/etc), use either the mask (higher priority) or
+list of zones to enable. In the mask, the zones are the bit places. Express the
+mask as a hex number.
+
+    $ export VX_ZONE_MASK=0x<hexnumber>
+    
+or use the list as a comma delimited set of zone numbers (see 'sample/include/vx_debug.h')
+
+    $ export VX_ZONE_LIST=0,1,2,3,6,9,14
+
+If you want these variable as part of the command line:
+
+    $ unset VX_ZONE_MASK
+    $ unset VX_ZONE_LIST
+    $ make
+    $ cd raw
+    $ VX_ZONE_LIST=0,3,16 vx_test <options>
+
+Note: VX_ZONE_MASK will override VX_ZONE_LIST. So if you have both set, only
+VX_ZONE_MASK is being seen by the implementation. 
+
+Now run your tests again.
+
+OpenCL Extension:
+==================================
+
+Firstly, define the path to the ROOT of the OpenCL development package from 
+your vendor.
+
+    $ export OPENCL_ROOT=<path>
+
+This is where it will look for the include/ or inc/ folders and /lib or /lib64 folders.
+
+Then scrub OpenVX if it's been built before. 
+    
+    $ make scrub
+    
+Then if the library is just called "OpenCL" no change is needed, if not then set
+the name of the library (Intel OpenCL for example).
+
+    $ export OCL_LIB=intelocl 
+    $ make
+
+Running:
+-------
+
+Be sure that the LD_LIBRARY_PATH or your system path has the needed OpenCL
+secondary modules locations. Some implementations need these paths to be 
+present.
+
+Check with your vendors.
+
+    $ export LD_LIBRARY_PATH=<openvx_out>:/usr/lib:/lib:<path to vendor lib>
+

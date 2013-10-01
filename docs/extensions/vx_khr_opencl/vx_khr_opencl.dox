@@ -1,0 +1,72 @@
+/*!
+
+\mainpage OpenCL Inter-Op Specification
+
+\section sec_intro Introduction
+
+\subsection sec_purpose Purpose
+
+The purpose of this extension is to declare an inter-operational policy when calling
+OpenCL within OpenVX.
+
+\section sec_interop Inter-operational Policies
+
+\subsection sec_interop_types Converting OpenVX types to OpenCL
+When calling an OpenCL kernel from OpenVX, the implementation must translate 
+OpenVX types to OpenCL types. This table defines the set of parameters which the
+OpenCL kernel function must declare. 
+
+| OpenVX Type                   | OpenCL Inter-op Type  |
+|:------------------------------|:----------------------|
+| VX_TYPE_BUFFER (vx_buffer) | __global \ref vx_cl_buffer_t *,\n __global void * |
+| VX_TYPE_CONVOLUTION (vx_convolution) | __global \ref vx_cl_convolution_t *,\n __global short * |
+| VX_TYPE_COORDINATES (vx_coordinates) | __global int *[2] |
+| VX_TYPE_DISTRIBUTION (vx_distribution) | __global \ref vx_cl_distribution_t *,\n __global int * |
+| VX_TYPE_IMAGE (vx_image) | __global \ref vx_cl_imagepatch_addressing_t*, \n __global void * \note This pair must be used per plane!|
+| VX_TYPE_LUT (vx_lut) | same as vx_buffer |
+| VX_TYPE_MATRIX (vx_matrix) | __global \ref vx_cl_matrix_t *,\n __global void * |
+| VX_TYPE_PYRAMID (vx_pyramid) | Not Supported |
+| VX_TYPE_SCALAR (vx_scalar) | __global _type_ *, \see group_cl_types |
+| VX_TYPE_THRESHOLD (vx_threshold) | Not Supported |
+
+\subsection sec_opencl_func Declaring A Simple Image Filter OpenCL Kernel
+
+An OpenCL Kernel function which is callable by OpenVX must
+conform to a specific function signature to match the calling convention of the
+function as expressed by OpenVX.
+
+\code
+/* The OpenVX Node Function Prototype */
+vx_node vxMyOpenCLNode(vx_graph graph, vx_image input, vx_image output);
+
+/* The OpenVX Immediate Function Prototype */
+vx_node vxuMyOpenCLNode(vx_image input, vx_image output);
+\endcode
+
+The Node definition then consists of this parameter set, which takes an image 
+as an input and outputs an image:
+
+| INDEX | TYPE           | DIRECTION    |
+|:-----:|:--------------:|:------------:|
+| 0     | VX_TYPE_INPUT  | VX_INPUT     |
+| 1     | VX_TYPE_OUTPUT | VX_OUTPUT    |
+
+The OpenCL Kernel then must be declared based on the rules of type conversion listed 
+above, given that the function processes images which are a single plane only, as 
+verified by the input and output verification functions supplied by the kernel author.
+
+\code
+/* The OpenCL Kernel to call from OpenVX based on signature above with single plane images. */
+__kernel myopenclkernel(__global vx_cl_imagepatch_addressing_t *input_addr,
+						__global void *input_base,
+						__global vx_cl_imagepatch_addressing_t *output_addr,
+						__global void *output_base);
+
+\subsection sec_adding_kernel Adding an OpenCL Kernel to OpenVX
+
+
+
+\endcode
+
+
+*/

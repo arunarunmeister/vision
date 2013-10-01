@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/repos/!svn/ver/23079/Vision/trunk/docs/dot
+END
+bug_policy.dot
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repos/!svn/ver/23055/Vision/trunk/docs/dot/bug_policy.dot
+END
+phases.dot
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repos/!svn/ver/23079/Vision/trunk/docs/dot/phases.dot
+END
+roles.dot
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repos/!svn/ver/22699/Vision/trunk/docs/dot/roles.dot
+END
+pipeline.dot
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/22699/Vision/trunk/docs/dot/pipeline.dot
+END
+overview.dot
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/22699/Vision/trunk/docs/dot/overview.dot
+END
+simple_independent.dot
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/22699/Vision/trunk/docs/dot/simple_independent.dot
+END
+user_nodes.dot
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repos/!svn/ver/22699/Vision/trunk/docs/dot/user_nodes.dot
+END
+bidirectional.dot
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/22699/Vision/trunk/docs/dot/bidirectional.dot
+END

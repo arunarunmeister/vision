@@ -1,0 +1,13 @@
+msc {
+    a [label="Client"], b [label="OpenVX"];
+    a=>b [label="vxCreateImage(context, 320, 240, FOURCC_UYVY)", URL="\ref vxCreateImage()"];
+    a<<b [label="vx_image", URL="\ref vx_image"];
+    ...  [label="other operations"];
+    a=>b [label="vxVerifyGraph", URL="\ref vxVerifyGraph()"];
+    a<<b [label="vx_status", URL="\ref vx_status_e"];
+    ...  [label="loop:"];
+    a=>b [label="vxProcessGraph", URL="\ref vxProcessGraph()"];
+    a<<b [label="vx_status", URL="\ref vx_status_e"];
+    ...  [label="goto loop; // Repeat as needed\n"];
+    a=>b [label="vxReleaseImage(&image)", URL="\ref vxReleaseImage()"];
+}

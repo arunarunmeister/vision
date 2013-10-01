@@ -1,0 +1,36 @@
+
+digraph bidirectional {
+    size=2;
+    node [shape="box" style="filled" color="white"];
+
+    subgraph cluster_data {
+        label="Data";
+        shape="box";
+        style="filled";
+        color="lightblue";
+
+        D1;
+        D2;
+        D3;
+        D4;
+    };
+    
+    subgraph cluster_graph {
+        label="Graph";
+        shape="box";
+        style="filled";
+        color="pink";
+        node [shape="circle"];
+        
+        N1;
+        N2;
+        N3;
+        N4;
+    };
+    
+    D1 -> N1 -> D2;
+    D2 -> N2 -> D2;
+    D2 -> N3 -> D3;
+    D3 -> N4 -> D4;
+}
+

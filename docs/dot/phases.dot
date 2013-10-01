@@ -1,0 +1,13 @@
+
+digraph phases {
+    size=2;
+    node [shape=box];
+
+    A [label="Graph Construction", URL="\ref vxCreateGraph"];
+    B [label="Graph Verification", URL="\ref vxVerifyGraph"];
+    C [label="Graph Execution", URL="\ref vxProcessGraph"];
+    D [label="Graph Deconstruction", URL="\ref vxReleaseGraph"];
+
+    A->B->C->D;
+    C->C [label="data updates"];
+}

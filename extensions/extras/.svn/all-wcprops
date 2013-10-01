@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/extras
+END
+openvx-extras.def
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repos/!svn/ver/21706/Vision/trunk/extensions/extras/openvx-extras.def
+END
+vx_harris_score.c
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repos/!svn/ver/23070/Vision/trunk/extensions/extras/vx_harris_score.c
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/22853/Vision/trunk/extensions/extras/concerto.mak
+END
+vx_filter.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/extras/vx_filter.c
+END
+vx_listers.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/extras/vx_listers.c
+END
+Android.mk
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/21706/Vision/trunk/extensions/extras/Android.mk
+END
+vx_extras_module.c
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repos/!svn/ver/23044/Vision/trunk/extensions/extras/vx_extras_module.c
+END
+vx_extras_lib.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/repos/!svn/ver/23070/Vision/trunk/extensions/extras/vx_extras_lib.c
+END
+vx_extras_module.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repos/!svn/ver/23044/Vision/trunk/extensions/extras/vx_extras_module.h
+END
+vx_gradients.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/extras/vx_gradients.c
+END
+vx_nonmax.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23286/Vision/trunk/extensions/extras/vx_nonmax.c
+END

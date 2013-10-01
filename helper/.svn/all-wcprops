@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/repos/!svn/ver/23128/Vision/trunk/helper
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repos/!svn/ver/21706/Vision/trunk/helper/concerto.mak
+END
+Android.mk
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repos/!svn/ver/21706/Vision/trunk/helper/Android.mk
+END
+vx_helper.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repos/!svn/ver/23128/Vision/trunk/helper/vx_helper.c
+END

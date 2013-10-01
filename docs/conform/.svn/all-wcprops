@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/repos/!svn/ver/23220/Vision/trunk/docs/conform
+END
+Doxyfile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/22435/Vision/trunk/docs/conform/Doxyfile
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23220/Vision/trunk/docs/conform/concerto.mak
+END
+conformance.dox
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/22435/Vision/trunk/docs/conform/conformance.dox
+END
+header.tex
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repos/!svn/ver/22435/Vision/trunk/docs/conform/header.tex
+END
+doxygen.sty
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/22435/Vision/trunk/docs/conform/doxygen.sty
+END
+footer.tex
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repos/!svn/ver/22435/Vision/trunk/docs/conform/footer.tex
+END

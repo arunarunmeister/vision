@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repos/!svn/ver/23070/Vision/trunk/sample/bindings/ruby
+END
+vx_ruby.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/23070/Vision/trunk/sample/bindings/ruby/vx_ruby.c
+END
+openvx.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/ruby/openvx.rb
+END
+rubyext.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/ruby/rubyext.c
+END
+vx_ruby.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/ruby/vx_ruby.h
+END
+extconf.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/20916/Vision/trunk/sample/bindings/ruby/extconf.rb
+END
+rubyext.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/ruby/rubyext.h
+END
+vx_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/bindings/ruby/vx_test.rb
+END

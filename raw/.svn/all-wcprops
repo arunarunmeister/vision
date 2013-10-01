@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/repos/!svn/ver/22516/Vision/trunk/raw
+END
+colorbars_640x480_I444.rgb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/20687/Vision/trunk/raw/colorbars_640x480_I444.rgb
+END
+shapes.pgm
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/repos/!svn/ver/22516/Vision/trunk/raw/shapes.pgm
+END
+lena_512x512.pgm
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/repos/!svn/ver/21030/Vision/trunk/raw/lena_512x512.pgm
+END
+bikegray_640x480.pgm
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/20702/Vision/trunk/raw/bikegray_640x480.pgm
+END

@@ -1,0 +1,591 @@
+/*!
+ \page page_design Design Overview
+ 
+ \section sec_overview Software Landscape
+
+ OpenVX is intended to used either as purely the acceleration layer of many 
+ commonly-used Computer Vision Framework and/or Engines, or directly from applications
+ when the need suites. In most cases existing APIs from various sources are already 
+ present and OpenVX would be accessed from within these existing APIs. Applications
+ which are performance sensitive may want to consider refactoring their Computer
+ Vision algorithms to accomodate using this API. 
+ 
+ \dotfile overview.dot OpenVX Usage Overview
+  
+ \section sec_design_objective Design Objectives
+ 
+ This specification was designed as a Framework of standardized Computer Vision functions
+ (or 'kernels') designed to run on a wide variety of platforms which are intended to be accelerated 
+ by a Vendor's implementation on that platform. OpenVX is intended to improve the performance 
+ (in a vareity of meanings) of vision applications by creating an abstraction for 
+ commonly-used vision kernels, and an abstraction for combinations of kernels 
+ (a 'graph') and minimizing run-time overhead. 
+ 
+ These required 'kernels' cover common use cases required by vision applications (e.g. object detection).
+ 
+ \subsection sec_sub_optimizations Hardware Optimizations
+ 
+ Vendors may choose to achieve this design objective this through 
+ parallelism and/or specialized hardware offload techniques or any number of other
+ methods. This specification makes no statements as to what methodology is required.
+ This specification also makes no statement or requirements on a "level of 
+ performance" as this may vary wildly across platforms. 
+ 
+ \subsection sec_design_hw_limitations Hardware Limitations
+ 
+ The focus is on kernels which are commonly known to lend themselves to an appreciable 
+ level of hardware based optimization. Future versions of this specification may 
+ adopt more 'kernels' as part of the standard based on a broadly available set
+ of hardware able to accelerate said 'kernels'.
+ \section sec_assumptions Assumptions
+
+ \subsection sec_portability Portability
+
+ It is assumed that there is an upper limit to the portability of a framework across
+ various platforms and environments. The intent is to obtain the most possible portability,
+ while recognizing that this API is intended to be used on specific
+ devices which have specific requirements. Tradeoffs are made for portability
+ where possible. For example, generic Graphs constructed using this API should 
+ work on any OpenVX implementation and return similar results within the bounds 
+ of the conformance tests limitations.  
+
+ \subsection sec_opaque Opaqueness
+
+ The API is designed to be opaque in order to not force hardware-specific requirements into
+ any particular implementation. OpenVX is intended to address a very broad
+ range of devices, platforms, and uses; everything from deeply embedded to
+ desktop, and even to the cloud. The range of implementations are quite different 
+ and as such, the API shall only address all these spaces through opaqueness. 
+ 
+ For example, the API does not want to dictate byte packing or alignment for
+ structures on cores which potentially may not be able to comply and thereby
+ require the implementor to track two structures (one that maps to the hardware 
+ alignment and one that does not). 
+ 
+ To avoid this issue, the API does not specify memory layout of opaque objects.
+
+ This specification does not dictate any requirements on  
+ memory allocation methods for opaque data objects. All data, except 
+ user-facing structures, are opaque and hidden behind a reference which may be 
+ as thin or thick as an implementation needs. Each implementation provides the 
+ standardized interfaces for accessing data that takes care of specialized 
+ hardware, platform, or allocation requirements. Memory which is "imported" or 
+ "shared" from other APIs is not subsumed by OpenVX and is still maintained and 
+ accessible by the originator. 
+
+ \section sec_objects OpenVX Framework Objects
+
+ - \ref group_context - The OpenVX context is the object domain for all 
+ OpenVX objects. All data objects "live" in the context as well as all 
+ framework objects. The OpenVX context keeps reference counts 
+ on all objects and must do garbage collection during its deconstruction to free
+ lost references. While multiple clients may connect to the OpenVX context, all data 
+ is private in that the references which refer to data objects are given only to 
+ the creating party. Multiple targets share the same Context within OpenVX to 
+ enable shared data for computation. 
+ 
+ - \ref group_kernel - The individual computer vision function, such as a
+ "Sobel Gradient" or "Lucas Kanade Feature Tracking". This does not refer to HLOS
+ kernels, such as the <i>Linux</i> Kernel. A single function may implement many
+ features, but this constitutes a single kernel as long as it is contained in
+ a single function.
+
+ - \ref group_target - A target is any configuration of hardware device(s) which shall 
+ execute OpenVX kernels. A vendor may arrange multiple configurations of the same hardware or
+ have multiple hardware targets. This arrangement or usage of hardware for targets is
+ completely left to the vendor to decide. The clients of OpenVX must be able to query the
+ implementation to discover what targets are available. The returned information 
+ is vendor specific.
+ 
+ - \ref group_parameter - Abstract input, output, or bidirectional data object
+ passed to a computer vision kernel. This object contains the signature of that 
+ parameter's usage from the kernel description. This information includes:
+ \arg <i>Signature Index</i> - The numbered index of the parameter in the signature.
+ \arg <i>Object Type</i> - e.g. <tt>\ref VX_TYPE_IMAGE</tt> or <tt>\ref VX_TYPE_BUFFER</tt> or some other object type from <tt>\ref vx_type_e</tt>.
+ \arg <i>Usage Model</i> - e.g. <tt>\ref VX_INPUT</tt>, <tt>\ref VX_OUTPUT</tt>, or <tt>\ref VX_BIDIRECTIONAL</tt>.
+ \arg <i>Presence State</i> - e.g. <tt>\ref VX_PARAMETER_STATE_REQUIRED</tt>, or <tt>\ref VX_PARAMETER_STATE_OPTIONAL</tt>.
+  
+ - \ref group_node - A node is an instance of a kernel which will be paired with 
+ a specific set of references. Nodes are created from and associated with a single graph only.
+
+ - \ref group_graph - A set of nodes connected in a directed (only goes one-way)
+ acyclic (does not loop back) fashion. A Graph may have sets of Nodes which are
+ unconnected to other sets of Nodes within the same Graph.
+ 
+ \section sec_data_objects OpenVX Data Objects
+ 
+ - \ref group_image An opaque image object which may be some format in <tt>\ref vx_fourcc_e</tt>.
+ - \ref group_buffer An opaque buffer object which could be an array of primitive data types, a structure or an array of structures.
+ - \ref group_scalar An opaque object which contains a single primitive data type. 
+ - \ref group_coordinates An opaque object which contains \f$ N \f$ dimensional array of <tt>\ref vx_int32</tt> values. 
+ - \ref group_convolution An opaque object which contains \f$ MxN \f$ matrix of <tt>\ref vx_int16</tt> values. Also contains a scaling factor for normalization. Used specifically with <tt>\ref vxuConvolve</tt> and <tt>\ref vxConvolveNode</tt>. 
+ - \ref group_matrix An opaque object which contains \f$ MxN \f$ matrix of some scalar values. 
+ - \ref group_lut An opaque lookup table object used with <tt>\ref vxTableLookupNode</tt> and <tt>\ref vxuTableLookup</tt>.
+ - \ref group_list An opaque list object which shall contain other objects.
+ - \ref group_rectangle An opaque rectangle object which contains a starting and ending coordinate bound within some <tt>\ref vx_image</tt> pixel space.
+ - \ref group_threshold An opaque object which contains the thresholding configuration.
+ - \ref group_pyramid An opaque object which contains multiple levels of scaled <tt>\ref vx_image</tt> objects.
+ - \ref group_delay An opaque object which contains a manually control temporally-delayed list of objects. 
+ 
+ \subsection sec_data_virtual Virtual Data Objects
+ 
+ Some data objects may not be needed by clients of OpenVX and are purely present
+ for the purpose of declaring data dependencies between nodes in a graph but are
+ never used by the client. To further optimize graph with these properties, 
+ <i>Virtual</i> data objects may be used to create the data dependencies between
+ two or more nodes. <i>Virtual</i> data has several properties apart from other data objects
+ - Inaccessible - No calls to an Access/Commit API shall succeed given a reference
+ to an object created through a <i>Virtual</i> create function from a Graph <i>external</i> 
+ perspective. Calls to Access/Commit from within User Supplied Nodes may succeed as
+ they are Graph <i>internal</i>.
+ - Dimensionless or Formatless - <i>Virtual</i> data objects may return zeros or 
+ generic values for formats when queried.
+ - Optimizations - <i>Virtual</i> data may not actual be created during Graph 
+ execution and therefore may be of zero <i>size</i>. 
+ 
+ \section sub_graphs Graphs Concepts
+
+ The graph is the central computation concept of the OpenVX Frameworking Layer. The purpose
+ of using Graphs to express the Computer Vision problem is to allow for the 
+ possibility of any implementation to maximize its optimization potential because
+ all the operations of the Graph and its dependencies are known ahead of time, 
+ before the graph is processed. 
+ 
+ Graphs are composed of one or more Nodes which are added to the Graph through 
+ Node creation functions. Graphs in OpenVX must be declared ahead of time, manually verified
+ and then may be processed later. Verified graphs may be processed as many times as needed.
+
+ \subsection sub_graph_linking Linking Nodes
+ 
+ Graph Nodes are linked together via data dependencies with \b no \b explicitly stated ordering. 
+ The same reference may be linked to other nodes. Linking has a limitation however,
+ in that only one node in a graph may output to any specific data object reference. 
+ That is, only a single writer of an object may exist in a given graph. This prevents 
+ indeterminate ordering from data dependencies. All writers shall execute before any
+ reader of a data object execute. 
+ 
+ \subsection sub_node_parameters Node Parameters
+
+ Parameters to node creation functions are defined as either atomic types,
+ such as <tt>\ref vx_int32</tt>, <tt>\ref vx_enum</tt>, or as objects, such as <tt>\ref vx_scalar</tt>, 
+ <tt>\ref vx_image</tt>. The atomic variables of the Node creation functions shall be 
+ converted by the framework into <tt>\ref vx_scalar</tt> references for use by the Nodes. 
+ All node parameter objects may be modified by retrieving the reference to the 
+ <tt>\ref vx_parameter</tt> via <tt>\ref vxGetParameterByIndex</tt>, then passing that to 
+ <tt>\ref vxQueryParameter</tt> to retrieve the reference to the object.
+  
+ \snippet examples/vx_parameters.c Getting the ref
+ 
+ If the type of the parameter is unknown, it may be retrieved with the same function.
+ 
+ \snippet examples/vx_parameters.c Getting the type
+  
+ \subsection sub_graph_parameters Graph Parameters
+ 
+ Parameters may exist on Graphs as well. These parameters are defined by the author of 
+ the Graph and each Graph parameter is defined as a specific parameter from a Node
+ within the Graph using <tt>\ref vxAddParameterToGraph</tt>. Graph parameters are used
+ to communicate to the implementation that there are specific Node parameters which may 
+ be modified by the client between Graph executions. Additionally they are parameters
+ which the client may set without the reference to the Node, but with the reference to the Graph
+ using <tt>\ref vxSetGraphParameterByIndex</tt>. This allows for the Graph authors to 
+ construct <i>Graph Factories</i>. How these methods work falls outside the scope
+ of this document, but an example Graph Factory is provided for informative reasons
+ in the Example section. See \ref vx_graph_factory.c.
+  
+ \subsection sub_graphs_execution Execution Model
+  
+ Graphs must execute in both Synchronous blocking mode (in that <tt>\ref vxProcessGraph</tt> will 
+ block until the graph has completed) and in Asychronous single-issue-per-reference mode (via 
+ <tt>\ref vxScheduleGraph</tt> and <tt>\ref vxWaitGraph</tt>). 
+ 
+ \subsubsection sub_graphs_execution_asych Asychronous Mode
+ 
+ In asynchronous mode, Graphs must be single issue per reference. This means that given a
+ constructed graph reference \f$ g1 \f$, it may be scheduled multiple 
+ times but will only execute sequentially with respect to itself. Multiple graphs
+ references given to the asynchronous graph interface do not have a defined behavior 
+ and may execute in parallel or series based on the behavior or the vendor's implementation.    
+
+ \subsection sub_graphs_rules Graph Formalisms
+ 
+ In order to use graphs several rules must be put in place to allow deterministic execution of
+ Graphs. The behavior of a processGraph(G) call is determined by the structure of the 
+ Processing Graph G.  The Processing Graph is a bipartite graph consisting of a set of Nodes 
+ N1..Nn and a set of data objects d1..di. Each edge (Nx, Dy) in the graph represents a data 
+ object Dy that is written by Node Nx and each edge (Dx, Ny) represents a data object Dx that 
+ is read by Node Ny.  Each edge e has a name Name(e), which gives the parameter name of the 
+ node that references the corresponding data object.  Each Node Parameter also as a type 
+ Type(node, name) in {INPUT, OUTPUT, INOUT}.  Some data objects are 'Virtual', and some data 
+ objects are 'Delay'. 'Delay' data objects are just collections of data objects with indexing (like 
+ an image list) and known linking points in a graph. A node may be classified as a 'head node', 
+ which has no backward dependency. Alternatively, a node may be a 'dependent node' which has 
+ a backward dependency to the 'head node'.
+ In addition, the Processing Graph has several restrictions:
+<ol>
+ <li>(Output typing) Every output edge (Nx, Dy) requires Type(Nx, Name(Nx, Dy)) in {OUTPUT, INOUT}</li>
+ <li>(Input typing) Every input edge (Ix, Dy) requires Type(Ny, Name(Dx, Ny)) in {INPUT} or {INOUT}</li>
+ <li>(Single Writer) Every data object is the target of at most one output edge.</li>
+ <li>(Broken Cycles) Every cycle in G must contain at least input edge (Dx, Ny) where Dx is Delay.</li>
+ <li>(Virtual images must have a source) If Dy is Virtual, then there is at least one output edge that writes 
+ Dy (Nx, Dy)</li> 
+ <li>(Bidirectional data objects shall not be virtual) If Type(Nx, Name(Nx, Dy)) is INOUT implies Dy is 
+ non-Virtual.</li>
+ <li>(Delay data objects shall not be virtual) If Dx is Delay then it shall not be Virtual. </li>
+ </ol> 
+
+ The execution of each node in a graph consists of an atomic operation (sometimes referred to 
+ as 'firing') that consumes data representing each input data object, processes it, and produces 
+ data representing each output data object.  A node may execute when all of its input edges are marked 
+ 'present'. Before the graph executes, the following initial marking is used:
+<ul>
+ <li>all input edges (Dx, Ny) from non-Virtual objects Dx are marked  (presumably these must be 
+ set by the user before calling processGraph) </li>
+ <li>all input edges (Dx, Ny) with an output edge (Nz, Dx) are unmarked</li>
+ <li>all input edges (Dx, Ny) where Dx is a delay data object are marked </li>
+ </ul>
+<br>
+ Processing a node results in unmarking all the corresponding input edges and marking all its 
+ output edges marking an output edge (Nx, Dy) where Dy is not a Delay results in marking all of the 
+ input edges (Dy, Nz). Following these rules, it is possible to statically schedule the nodes in a graph as follows:
+ Construct a precedence graph P, including all the nodes N1..Nx, and an edge (Nx, Nz) for every pair of 
+ edges (Nx, Dy) and (Dy, Nz) where Dy is not a delay.  Then unconditionally fire each node according 
+ to any topological sort of P.
+
+ Following assertions should be verified:
+<ol>
+ <li>P is a DAG (implied by 4 and the way it is constructed)</li>
+ <li>Every data object has a value when it is executed (implied by 5, 6, 7, and the marking)</li>
+ <li>Execution is deterministic if the nodes are deterministic (implied by 3, 4, and the marking)</li>
+ <li>Every node completes its execution exactly once. The execution model described here just acts as a formalism.  For example, independent
+     processing is allowed across multiple depended and depending nodes and edges, provided that 
+     the result is invariant with the execution model described here </li>
+</ol>
+
+ \subsection sec_graph_indep Node Execution Independence
+
+ In this example a client computes the gradient magnitude and gradient phase from
+ a blurred input image. The <tt>\ref vxMagnitudeNode</tt> and <tt>\ref vxPhaseNode</tt> are <i>independently</i> 
+ computed, in that each does not depend on the output of the other. OpenVX does 
+ not mandate that they are run simultaneously or in parallel but it could be 
+ implemented this way by the vendor of the OpenVX implementation. 
+
+ \dotfile simple_independent.dot A simple graph with some independent nodes.
+ 
+ The code to construct such a graph with by explicitly stating data dependencies is:
+
+ \include vx_independent.c
+ 
+ \subsection sec_graph_verification Verification 
+ 
+ Graphs within OpenVX must go through a rigorous validation process before execution in order to 
+ satify the design concept of eliminating run-time overhead (parameter checking) which will guarentee safe
+ execution of the graph. OpenVX must check for (but is not limited to) these conditions:
+ - Parameters To Nodes: 
+ \arg Each required parameter is given to the node (\ref vx_parameter_state_e). 
+ Optional parameters may not be present and therefore are not checked when absent. If present, they are checked.
+ \arg Each parameter given to a node must be of the right "direction" (a value from <tt>\ref vx_direction_e</tt>).
+ \arg Each parameter given to a node must be of the right "object type" (from the object range of <tt>\ref vx_type_e</tt>).
+ \arg Each parameter attribute or value which has algorithmic significance must be verified. 
+ In the case of a scalar value, it may need to be ranged checked (e.g. \f$ 0.5 <= k <= 1.0 \f$). 
+ In the case of <tt>\ref vxScaleImageNode</tt>, the relation of the input image dimensions 
+ to the output image dimensions determines the scaling factor. These values or 
+ attributes of data objects must be checked for compatibility on each platform.
+ \arg Graph Connectivity - the <tt>\ref vx_graph</tt> must be a DAG (Directed, 
+ Acyclic Graph). No cycles, or feedback is allow. The <tt>\ref vx_delay</tt> object has been
+ designed to explicit address feedback between Graph executions. 
+ \arg Resolution of Virtual Data Objects - Any changes to <i>Virtual</i> data objects from
+ unspecified to specific format or dimensions, as well as the related creation of objects of specific type
+ that are observable at processing time takes place at Verification time.
+ 
+ \section sub_user_nodes "User" Nodes
+
+ OpenVX supports the concept of client-supplied functions or <i>User-Supplied Nodes</i> which
+ shall be executed from inside the Graph or are Graph <i>internal</i>. The purpose of allowing for this paradigm 
+ to further exploit independent operation of nodes within the OpenVX platform.
+
+ \dotfile user_nodes.dot A graph with user nodes which are independent of the "base" nodes.
+ 
+ In this example, the graph does not have to be halted to execute client-supplied 
+ nodes and then resumed. These nodes shall be executed in an 
+ independent fashion with respect to independent base nodes within OpenVX. 
+ This allows  implementations to further minimize execution time if hardware to 
+ exploit this property exists. 
+ 
+ \subsection sec_user_node_validation Parameter Validation
+ 
+ User nodes must aid in the Graph Verification effort by providing explicit 
+ validation functions for each kernel they implement. Each parameter passed to 
+ the user node will be validated using the client-supplied validation functions. 
+ In this case, the client must check these additional attributes or values of 
+ each parameter:
+ \arg If an attribute or value of the parameter has algorithmic significance, 
+ it must be checked. For example, a size of buffer, or a value of scalar within 
+ a range, or a dimensionality constraint of an image such as width divisibility 
+ (some implementations must have image pixel width be evenly divisible by some 
+ fixed number).    
+ \arg If the output parameters depend on attributes or values from input 
+ parameters, those relationships must be checked (typically within the output validator). 
+ 
+ \subsection sec_kernelnaming User Kernel Naming Conventions
+
+ Users kernels must be export with a unique name (see \ref sec_naming_conventions 
+ for information on OpenVX conventions) and a unique enumeration. 
+ Clients of OpenVX may use either the name or enumeration
+ to retrieve a kernel, so collisions will cause problems. 
+ For kernel authors, the enumerations may be extended by following this example:
+ 
+ \snippet include/VX/vx_ext_xyz.h KERNEL ENUM
+ 
+ Each vendor of a kernel or an implementation must apply to Khronos to get a 
+ unique identifier (up to a limit of \f$ 2^{12}-1 \f$ vendors). Until they obtain a unique ID 
+ vendors must use \ref VX_ID_DEFAULT. 
+ 
+ In order to construct a kernel enumeration, a vendor must have both their ID and a 
+ <i>library</i> ID. The library ID's are completely <i>vendor</i> defined (however
+ when using the \ref VX_ID_DEFAULT ID, many libraries may collide in namespace).
+ 
+ Once both are defined, a kernel enumeration may be constructed using the \ref VX_KERNEL_BASE 
+ macro and an offset (optional, but very helpful for long enumerations). 
+ 
+ \section sec_callback Callbacks
+
+ Callbacks are a method to control graph flow and to make decisions based on
+ completed work. The <tt>\ref vxAssignNodeCallback</tt> call takes as a parameter 
+ a callback function. This function will be called after the execution of the 
+ particular node, but prior to the completion of the graph. If nodes are arranged into independent sets, the order of the 
+ callbacks in unspecified. Nodes which are arranged in a serial fashion due to 
+ data dependencies will perform callbacks in order. The callback function may 
+ use the node reference to extract parameters from the node, then extract 
+ the data references. Data outputs of Nodes with callbacks 
+ shall be available (via Access/Commit methods) when the callback is called. 
+ 
+ The callback must return a <tt>\ref vx_action</tt> code which indicates how the graph processing should proceed.
+ \arg If <tt>\ref VX_ACTION_CONTINUE</tt> is returned, the graph will continue execution with no changes.
+ \arg If <tt>\ref VX_ACTION_ABANDON</tt> is returned, all further nodes following this node 
+ in the graph will not execute. Executions of nodes in independent branches 
+ of the graph are unspecificied. 
+ \arg If <tt>\ref VX_ACTION_RESTART</tt> is returned, all further nodes following this 
+ node of the graph will not execute. Executions of nodes in independent branches 
+ of the graph are unspecificied. Once the graph halts it will restart execution.
+
+ \section sec_immediate_mode Immediate Mode Functions
+ 
+ OpenVX also contains an interface defined within <tt>&lt;VX/vxu.h&gt;</tt> which 
+ allows for immediate execution of kernels. These interfaces are prefixed with 
+ <tt>vxu</tt> to distinguish them from the Node interfaces which are of the form
+ <tt>vx&lt;Name&gt;Node</tt>. Each of these interfaces replicates a Node interface with 
+ some exceptions, notably <tt>\ref vxuHalfScaleGaussian3x3</tt>. Immediate mode functions 
+ are defined <b>to behave</b> as <i>Single Node Graphs</i>, which have no leaking 
+ side-effects (e.g. no Log entries) within the Graph Framework after the function
+ returns. The following Kernel tables refer to both the Immediate Mode and Graph Mode
+ kernels. The Module documentation for each Kernel draws a distinction on each API
+ by noting that it is either an immediate mode function with the tag [Immediate] or
+ it is a Graph mode function by the tag [Graph]. 
+
+ \section sec_kernels Kernels
+ 
+ OpenVX uses the term "kernel" to mean <i>a computer vision function</i>. OpenVX 
+ comes with a standard or "base" set of kernels. The following table indicates the 
+ supported set of kernel, their input (first set of types) and output (second set) 
+ types and the version of OpenVX from which they are supported.
+ 
+ \subsection sec_kernel_inputs Inputs
+ 
+ | Kernel               |  U8 | U16 | S16 | S32 | U32 | F32 | 4CC |
+ |:---------------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+ | AbsDiff              | 1.0 |     |     |     |     |     |     |
+ | Accumulate           | 1.0 |     |     |     |     |     |     |
+ | AccumulateSquared    | 1.0 |     |     |     |     |     |     |
+ | AccumulateWeighted   | 1.0 |     |     |     |     |     |     |
+ | Add                  | 1.0 |     | 1.0 |     |     |     |     |
+ | And                  | 1.0 |     |     |     |     |     |     |
+ | Box3x3               | 1.0 |     |     |     |     |     |     |
+ | CannyEdgeDetector    | 1.0 |     |     |     |     |     |     |
+ | ChannelCombine       | 1.0 |     |     |     |     |     |     |
+ | ChannelExtract       |     |     |     |     |     |     | 1.0 |
+ | ChannelExtractRef    |     |     |     |     |     |     | 1.0 |
+ | ColorConvert         |     |     |     |     |     |     | 1.0 |
+ | ConvertImageDepth    | 1.0 |     | 1.0 |     |     |     |     |
+ | Convolve             | 1.0 |     |     |     |     |     |     |
+ | Dilate3x3            | 1.0 |     |     |     |     |     |     |
+ | EqualizeHistogram    | 1.0 |     |     |     |     |     |     |
+ | Erode3x3             | 1.0 |     |     |     |     |     |     |
+ | FastCorners          | 1.0 |     |     |     |     |     |     |
+ | Gaussian3x3          | 1.0 |     |     |     |     |     |     |
+ | HarrisCorners        | 1.0 |     |     |     |     |     |     |
+ | HalfScaleGaussian3x3 | 1.0 |     |     |     |     |     |     |
+ | Histogram            | 1.0 |     |     |     |     |     |     |
+ | IntegralImage        | 1.0 |     |     |     |     |     |     |
+ | Inv                  | 1.0 |     |     |     |     |     |     | 
+ | TableLookup          | 1.0 |     |     |     |     |     |     |
+ | Magnitude            |     |     | 1.0 |     |     |     |     |
+ | MeanStdDev           | 1.0 |     |     |     |     |     |     |
+ | Median3x3            | 1.0 |     |     |     |     |     |     |
+ | MinMaxLoc            | 1.0 |     | 1.0 |     |     |     |     |
+ | Multiply             | 1.0 |     | 1.0 |     |     |     |     |
+ | OpticalFlowLK        | 1.0 |     |     |     |     |     |     |
+ | Or                   | 1.0 |     |     |     |     |     |     |
+ | Phase                |     |     | 1.0 |     |     |     |     |
+ | Pyramid              | 1.0 |     |     |     |     |     |     |
+ | Remap                | 1.0 |     |     |     |     |     |     |
+ | ScaleImage           | 1.0 |     |     |     |     |     |     |
+ | Sobel3x3             | 1.0 |     |     |     |     |     |     |
+ | Subtract             | 1.0 |     | 1.0 |     |     |     |     |
+ | Threshold            | 1.0 |     |     |     |     |     |     |
+ | Undistort            | 1.0 |     |     |     |     |     |     |
+ | WarpAffine           | 1.0 |     |     |     |     |     |     |
+ | WarpPerspective      | 1.0 |     |     |     |     |     |     |
+ | Xor                  | 1.0 |     |     |     |     |     |     |
+ 
+ \subsection sec_kernel_outputs Outputs
+ 
+ | Kernel               |  U8 | U16 | S16 | U32 | S32 | F32 | 4CC |
+ |:---------------------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+ | AbsDiff              | 1.0 |     |     |     |     |     |     |
+ | Accumulate           |     |     | 1.0 |     |     |     |     |
+ | AccumulateSquared    |     |     | 1.0 |     |     |     |     |
+ | AccumulateWeighted   | 1.0 |     |     |     |     |     |     |
+ | Add                  | 1.0 |     | 1.0 |     |     |     |     |
+ | And                  | 1.0 |     |     |     |     |     |     |
+ | Box3x3               | 1.0 |     |     |     |     |     |     |
+ | CannyEdgeDetector    | 1.0 |     |     |     |     |     |     |
+ | ChannelCombine       |     |     |     |     |     |     | 1.0 |
+ | ChannelExtract       | 1.0 |     |     |     |     |     |     |
+ | ChannelExtractRef    | 1.0 |     |     |     |     |     |     |
+ | ColorConvert         |     |     |     |     |     |     | 1.0 |
+ | ConvertImageDepth    | 1.0 |     | 1.0 |     |     |     |     |
+ | Convolve             | 1.0 |     | 1.0 |     |     |     |     |
+ | Dilate3x3            | 1.0 |     |     |     |     |     |     |
+ | EqualizeHistogram    | 1.0 |     |     |     |     |     |     |
+ | Erode3x3             | 1.0 |     |     |     |     |     |     |
+ | FastCorners          | 1.0 |     |     |     |     |     |     |
+ | Gaussian3x3          | 1.0 |     |     |     |     |     |     |
+ | HarrisCorners        | 1.0 |     |     |     |     |     |     |
+ | HalfScaleGaussian3x3 | 1.0 |     |     |     |     |     |     |
+ | Histogram            |     |     |     |     | 1.0 |     |     |
+ | IntegralImage        |     |     |     | 1.0 |     |     |     |
+ | Inv                  | 1.0 |     |     |     |     |     |     |
+ | TableLookup          | 1.0 |     |     |     |     |     |     |
+ | Magnitude            | 1.0 |     |     |     |     |     |     |
+ | MeanStdDev           |     |     |     |     |     | 1.0 |     |
+ | Median3x3            | 1.0 |     |     |     |     |     |     |
+ | MinMaxLoc            | 1.0 |     | 1.0 |     | 1.0 |     |     |
+ | Multiply             | 1.0 |     | 1.0 |     |     |     |     |
+ | OpticalFlowLK        |     |     |     | 1.0 |     |     |     |
+ | Or                   | 1.0 |     |     |     |     |     |     |
+ | Phase                | 1.0 |     |     |     |     |     |     |
+ | Pyramid              | 1.0 |     | 1.0 |     |     |     |     |
+ | Remap                | 1.0 |     |     |     |     |     |     |
+ | ScaleImage           | 1.0 |     |     |     |     |     |     |
+ | Sobel3x3             |     |     | 1.0 |     |     |     |     |
+ | Subtract             | 1.0 |     | 1.0 |     |     |     |     |
+ | Threshold            | 1.0 |     |     |     |     |     |     |
+ | Undistort            | 1.0 |     |     |     |     |     |     |
+ | WarpAffine           | 1.0 |     |     |     |     |     |     |
+ | WarpPerspective      | 1.0 |     |     |     |     |     |     |
+ | Xor                  | 1.0 |     |     |     |     |     |     |
+
+ \section sec_hints Hinting
+
+ The specification defines a Hinting API which allows programmer preferences 
+ to be fed to the implementation. See \ref group_hint. It is assumed that most
+ of the hints will be vendor or implementation specific. Check with the vendor
+ of the implementation of OpenVX for information on vendor-specific extensions.
+ 
+ \section sec_directives Directives
+
+ The specification defines a Directive API to control implementation behavior.
+ This may allow things like disabling parallelism for debugging,
+ enabling cache writing-through for some buffers, or any implementation-specific 
+ optimization.
+
+ \section sec_lifecycle Lifecycles
+
+ \subsection sec_lc_context OpenVX Context Lifecycle
+
+ The lifecycle model for an OpenVX <tt>\ref vx_context</tt>.
+
+ \mscfile system.msc
+
+ \subsection sub_lc_graph Graph Lifecycle
+
+ The OpenVX has four main phases of graph lifecycle:
+ \arg Construction - Graphs are created, Nodes are connected together by setting parameters.
+ \arg Verification - The graphs are checked for consistency, correctness and other 
+ conditions. Memory allocation may occur. 
+ \arg Execution - The graphs are executed via <tt>\ref vxProcessGraph</tt> or <tt>\ref vxScheduleGraph</tt>. 
+ Between executions data may be updated by the client or external mechanism. 
+ The client of OpenVX may change reference of input data to a graph, but this 
+ may require the graph to be validated again. 
+ \arg Desconstruction - Graphs are Released. All Nodes in the Graph are released.
+
+ \dotfile phases.dot Graph Lifecycle
+
+ \subsection sec_data_object_lifecycle Data Object Lifecycle
+ 
+ All objects in OpenVX follow a similar lifecycle model. All objects are 
+ \arg Created via <tt>vxCreate&lt;Object&gt;&lt;Method&gt;</tt> or retreived via 
+ <tt>vxGet&lt;Object&gt;&lt;Method&gt;</tt> from the Context if they are internally created. 
+ \arg Used within Graphs or Immediate functions
+ \arg Then objects must be released via <tt>vxRelease&lt;Object&gt;</tt>.
+ 
+ \subsubsection sec_lc_image OpenVX Image Lifecycle
+
+ This is an example of the Image Lifecycle using the OpenVX Framework API. This would also apply to other data types with changes to the types and function names.
+
+ \mscfile image.msc
+ 
+ \section sec_host_memory Host Memory Data Object Access Patterns
+
+ For objects which are retrieved from OpenVX which are 2D in nature such as 
+ <tt>\ref vx_image</tt>, <tt>\ref vx_matrix</tt>, and <tt>\ref vx_convolution</tt>, the manner in which the 
+ host-side has access to these memory regions well defined. OpenVX uses a row-major
+ storage (that is each unit is memory adjacent to it's row adjacent data). Two dimensional
+ objects are always declared in width (columns) by height (rows) notation 
+ (\ref vxCreateImage or <tt>\ref vxCreateMatrix</tt>). However when accessing these structures
+ in 'C' with arrays of declared size, users must declare dimensions in the reverse order. 
+ This layout ensures "row-wise" storage in 'C' on the host. A pointer could also 
+ be allocated for the matrix data and would have to be addressed in this fashion:
+ 
+ \include vx_matrix_access.c 
+ 
+ \section Example Code Flow
+
+ \subsection sec_lc_code OpenVX Example Code Flow
+
+ \mscfile example1.msc
+ \mscfile example2.msc
+ \mscfile example3.msc
+ \mscfile example4.msc
+ \mscfile example5.msc
+ \mscfile example6.msc
+ 
+ \section sec_extensions Extensions
+ 
+ \subsection sub_node_tiling_ext User Node Tiling
+ 
+ The User Node Tiling facility enables optimizations of the user nodes 
+ (e.g. locality of execution or parallelism) when performing computation on the 
+ image data. Modern processors have a diverse memory hierarchy that varies from 
+ relatively small but fast and expensive memory to relatively large but slow 
+ and inexpensive memory.  Image data is typically too large to fit into the 
+ fast but small memory.  The ability to break the image data into smaller sized 
+ units allows for optimized computation on these smaller units with fast memory 
+ access or parallel execution of a user node on multiple image tiles simultaneously. 
+ The OpenVX Graph Manager possesses the knowledge about the memory hierarchy of 
+ the target and is hence in a position to break the image data into smaller units 
+ for memory optimization.  Knowledge of the memory access pattern of an algorithm 
+ is key for the graph manager to enable optimizations.
+
+ The Khronos OpenVX Working Group will include this extension as part 
+ of the OpenVX 1.1 specification, contingent on community feedback.
+ 
+ \htmlonly
+ 
+ <h2>Copyright</h2>
+ The Khronos Group 2011-2013. OpenVX&#8482;, OpenCL&#8482;, OpenGL&#8482;, OpenMAX&#8482;, and Open Vision Acceleration&#8482; are trademarks of the Khronos Group&#8482;.
+ 
+ \endhtmlonly
+ 
+ */

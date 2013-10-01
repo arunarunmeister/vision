@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/repos/!svn/ver/23286/Vision/trunk/sample/include
+END
+vx_internal.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23286/Vision/trunk/sample/include/vx_internal.h
+END
+vx_distribution.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_distribution.h
+END
+vx_convolution.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_convolution.h
+END
+vx_kernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_kernel.h
+END
+vx_parameter.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_parameter.h
+END
+vx_sample.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/21126/Vision/trunk/sample/include/vx_sample.h
+END
+vx_log.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repos/!svn/ver/23285/Vision/trunk/sample/include/vx_log.h
+END
+vx_image.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_image.h
+END
+vx_context.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_context.h
+END
+vx_node.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_node.h
+END
+vx_target.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_target.h
+END
+vx_debug.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_debug.h
+END
+vx_threshold.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_threshold.h
+END
+vx_delay.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_delay.h
+END
+vx_osal.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_osal.h
+END
+vx_reference.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_reference.h
+END
+vx_graph.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_graph.h
+END
+vx_keypoint.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_keypoint.h
+END
+vx_rectangle.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_rectangle.h
+END
+vx_lut.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_lut.h
+END
+vx_matrix.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_matrix.h
+END
+vx_scalar.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_scalar.h
+END
+vx_pyramid.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_pyramid.h
+END
+vx_memory.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_memory.h
+END
+vx_buffer.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_buffer.h
+END
+vx_coordinates.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_coordinates.h
+END
+vx_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23220/Vision/trunk/sample/include/vx_list.h
+END

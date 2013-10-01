@@ -1,0 +1,9 @@
+msc {
+    a [label="Client"], b [label="OpenVX"];
+    ---  [label="Graph Construction Phase"];
+    |||;
+    a=>b [label="vxVerifyGraph"];
+    a<<b [label="vx_status"];
+    ...  [label="<once per graph>"];
+    |||;
+}

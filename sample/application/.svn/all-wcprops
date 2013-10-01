@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repos/!svn/ver/20922/Vision/trunk/sample/application
+END
+default.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/application/default.properties
+END
+Android.mk
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/application/Android.mk
+END
+AndroidManifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/application/AndroidManifest.xml
+END
+procfg.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/20394/Vision/trunk/sample/application/procfg.txt
+END

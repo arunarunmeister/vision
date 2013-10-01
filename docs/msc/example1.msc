@@ -1,0 +1,7 @@
+msc {
+    a [label="Client"], b [label="OpenVX"];
+    ---  [label="System Initialization Phase"];
+    a=>b [label="vxCreateContext"];
+    a<<b [label="vx_context"];
+    |||;
+}

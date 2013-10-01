@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/repos/!svn/ver/23286/Vision/trunk/conformance
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/21006/Vision/trunk/conformance/concerto.mak
+END
+Android.mk
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repos/!svn/ver/21128/Vision/trunk/conformance/Android.mk
+END
+vx_data.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/22435/Vision/trunk/conformance/vx_data.c
+END
+vx_conformance.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23286/Vision/trunk/conformance/vx_conformance.c
+END
+vx_data.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/22435/Vision/trunk/conformance/vx_data.h
+END
+vx_conformance.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/23072/Vision/trunk/conformance/vx_conformance.h
+END

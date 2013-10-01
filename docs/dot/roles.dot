@@ -1,0 +1,42 @@
+
+digraph roles {
+    size=2;
+    node [shape="box" style="filled" color="white"];
+
+    subgraph cluster_roles {
+        label="Roles";
+        shape="box";
+        style="filled";
+        color="lightblue";
+
+        KHRONOS [label="Khronos" shape="circle"];
+        CLIENT  [label="Client" shape="circle"];
+        ISV     [label="ISV" shape="circle"];
+        VENDOR  [label="VENDOR" shape="circle"];
+        OEM     [label="OEM" shape="circle"];
+    };
+
+    subgraph cluster_components {
+        label="Components";
+        shape="box";
+        style="filled";
+        color="lightblue";
+        OPENVX_EXT [label="OpenVX Extensions"];
+        OPENVX_API [label="OpenVX API"];
+    };
+
+    KHRONOS -> OPENVX_API [label="defines"];
+    VENDOR -> KHRONOS [label="belongs to"];
+    CLIENT -> OPENVX_API [label="uses"];
+    CLIENT -> OPENVX_EXT [label="uses"];
+    ISV -> OPENVX_EXT [label="implements"];
+    VENDOR -> OPENVX_EXT [label="implements"];
+    VENDOR -> OPENVX_API [label="implements"];
+    OPENVX_API -> OPENVX_EXT [label="loads"];
+    OEM -> OPENVX_API [label="provides"];
+    OEM -> OPENVX_EXT [label="provides"];
+    CLIENT -> OEM [label="partner"];
+    ISV -> OEM [label="partner"];
+    ISV -> VENDOR [label="partner"];
+}
+

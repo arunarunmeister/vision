@@ -1,0 +1,9 @@
+msc {
+   a [label="Client"], b [label="OpenVX"];
+   ---  [label="Valid graphs can be updated with new image data"];
+   |||;
+   a=>b [label="vxProcessGraph(graph)"];
+   a<<b [label="vx_status"];
+   ...  [label="<repeat>"];
+   |||;
+}

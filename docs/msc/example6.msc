@@ -1,0 +1,23 @@
+msc {
+    a [label="Client"], b [label="OpenVX"];
+    ---  [label="Teardown Phase"];
+    |||;
+    a=>b [label="vxReleaseNode"];
+    a<<b [label="vx_status"];
+    ...  [label="<repeat>"];
+    |||;
+    a=>b [label="vxReleaseKernel"];
+    a<<b [label="vx_status"];
+    ...  [label="<repeat>"];
+    |||;
+    a=>b [label="vxReleaseGraph"];
+    a<<b [label="vx_status"];
+    ...  [label="<repeat>"];
+    |||;
+    a=>b [label="vxReleaseImage\nvxReleaseBuffer"];
+    a<<b [label="vx_status"];
+    ...  [label="<repeat>"];
+    |||;
+    a=>b [label="vxReleaseContext"];
+    a<<b [label="vx_status"];
+}

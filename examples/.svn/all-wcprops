@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/repos/!svn/ver/23286/Vision/trunk/examples
+END
+xyz_module.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/23286/Vision/trunk/examples/xyz_module.c
+END
+vx_examples.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repos/!svn/ver/23102/Vision/trunk/examples/vx_examples.h
+END
+vx_matrix_access.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23129/Vision/trunk/examples/vx_matrix_access.c
+END
+concerto.mak
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/23188/Vision/trunk/examples/concerto.mak
+END
+vx_bufferrange.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23102/Vision/trunk/examples/vx_bufferrange.c
+END
+Android.mk
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/repos/!svn/ver/21128/Vision/trunk/examples/Android.mk
+END
+vx_clearlog.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repos/!svn/ver/23079/Vision/trunk/examples/vx_clearlog.c
+END
+vx_graph_factory.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23187/Vision/trunk/examples/vx_graph_factory.c
+END
+xyz.def
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/repos/!svn/ver/19631/Vision/trunk/examples/xyz.def
+END
+vx_tiling_main.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23128/Vision/trunk/examples/vx_tiling_main.c
+END
+vx_tiling_alpha.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23197/Vision/trunk/examples/vx_tiling_alpha.c
+END
+vx_factory_edge.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/23187/Vision/trunk/examples/vx_factory_edge.c
+END
+vx_factory_pipeline.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repos/!svn/ver/23193/Vision/trunk/examples/vx_factory_pipeline.c
+END
+vx_graph_factory.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/repos/!svn/ver/23189/Vision/trunk/examples/vx_graph_factory.h
+END
+vx_independent.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/23102/Vision/trunk/examples/vx_independent.c
+END
+vx_tiling_add.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23197/Vision/trunk/examples/vx_tiling_add.c
+END
+vx_tiling_box.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23197/Vision/trunk/examples/vx_tiling_box.c
+END
+vx_factory_corners.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23190/Vision/trunk/examples/vx_factory_corners.c
+END
+vx_imagepatch.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23079/Vision/trunk/examples/vx_imagepatch.c
+END
+vx_parameters.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23145/Vision/trunk/examples/vx_parameters.c
+END
+vx_tiling_ext.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23144/Vision/trunk/examples/vx_tiling_ext.c
+END
+vx_super_res.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/repos/!svn/ver/23193/Vision/trunk/examples/vx_super_res.c
+END
+vx_eyetrack.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/repos/!svn/ver/23070/Vision/trunk/examples/vx_eyetrack.c
+END
+vx_xyz_ext.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/repos/!svn/ver/23056/Vision/trunk/examples/vx_xyz_ext.c
+END
+vx_tiling_ext.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23187/Vision/trunk/examples/vx_tiling_ext.h
+END
+vx_tiling_gaussian.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repos/!svn/ver/23197/Vision/trunk/examples/vx_tiling_gaussian.c
+END
+vx_delaygraph.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repos/!svn/ver/23079/Vision/trunk/examples/vx_delaygraph.c
+END

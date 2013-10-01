@@ -1,0 +1,8 @@
+msc {
+    a [label="Client"], b [label="OpenVX"];
+    ---  [label="Image and Buffer Creation Phase"];
+    |||;
+    a=>b [label="vxCreateImage\nvxCreateBuffer"];
+    a<<b [label="vx_image\nvx_buffer"];
+    |||;
+}

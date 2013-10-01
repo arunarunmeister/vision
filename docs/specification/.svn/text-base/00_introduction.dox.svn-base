@@ -1,0 +1,152 @@
+/*!
+ \mainpage Introduction
+ 
+ \section sec_abstract Abstract
+ 
+ OpenVX is a low level programming framework for the Computer Vision domain.
+ OpenVX has been designed for supporting modern hardware systems such as mobile
+ and embedded SoCs, and desktop systems. These systems are typically parallel
+ and heterogeneous. They can contain a combination of multi-core CPUs, DSP
+ subsystems, GPUs, dedicated vision computing fabrics, and hardwired functions.
+ Their memory hierarchy can be complex, distributed, and not fully consistent
+ across the system.
+
+ By the abstractions it provides, OpenVX intends to maximize performance
+ portability across these hardware platforms and thus to provide high-level
+ vision frameworks with a means to address, efficiently, current and future
+ hardware systems with minimal impact on application source code. OpenVX contains 
+ \arg a library of useful predefined or customizable vision functions, 
+ \arg a graph-based execution model enabling task- and data-independent execution, as well as data
+ tiling optimization extensions, 
+ \arg a set of specific memory objects that abstract the physical memory layout and location. 
+ 
+ Since the computer vision domain is still evolving fast, OpenVX provides an extensibility 
+ mechanism with user-defined functions that can be added to the application graph.
+
+ OpenVX consists of a C API for building, verifying, coordinating graphs
+ execution, and for accessing memory objects. OpenVX also defines a <tt>vxu</tt> utility
+ library which exposes each OpenVX predefined function as a C function that can be called directly, without creating a graph. 
+The <tt>vxu</tt> does not benefit from the optimizations
+ enabled by graphs, however, it can be used as a first, and simpler, optimization step by
+ computer vision programmers.
+
+ \section sec_purpose Purpose
+ 
+ The purpose of this document is to detail the Application Programming Interface (API) for OpenVX.
+ 
+ \section sec_scope Scope of Specification
+
+ The scope of this document is to provide the standard by which an implementation
+ of OpenVX will be judged to be conformant from an interface (API) point of view.
+ This document does not contain the conformance standards for each kernel. 
+
+ \section sec_normative Normative References
+
+  The section "Module Documentation" forms the normative part of the specification. Each API definition provided in 
+  that chapter has certain preconditions and postconditions specified that are normative. 
+  If these normative conditions are not met, the behavior of the function is undefined.
+
+ \section sec_versions Version/Change History
+
+ - 1.0 ALPHA - September 24, 2013 - Provisional Specification sent to Promoter Board for review.
+ - 1.0 BETA - November 30, 2013 - Provisional Specification Ratified.
+ - 1.0 - ??? 2014 - Final Specification Ratified.
+ 
+ \section sec_requirements Requirements Language
+
+ In this specification, 'shall' or 'must' is used to express a requirement that is binding, 
+ 'should' is used to express design goals or recommended actions, and 'may' is used 
+ to express an allowed behavior. All other text is explanatory or provided for information only.
+
+ \section sec_typo Typographical Conventions
+
+ \e Italics are used in this specification to denote an emphasis on a particular concept or to
+ denote an abstraction of a concept. 
+
+ \b Bold words indicate warnings or strongly communicated concepts which are intended 
+ to draw attention to the text. 
+
+ Throughout this specification, code examples may be given to highlight a particular issue. 
+ They will be given using the format as shown below:
+
+ \code
+ /* Example Code Section */
+ int main(int argc, char *argv[])
+ {
+    return 0;
+ }
+ \endcode
+
+ \subsection sec_naming_conventions Naming Conventions
+
+ Opaque objects and atomics are named as \c vx_<i>object</i>, e.g., <tt>\ref vx_image</tt> or <tt>\ref vx_uint8</tt>,
+ with an underscore separating the object name from the "vx" prefix. 
+ 
+ Defined Structures are named as \c vx_<i>struct</i>_t, e.g.,  <tt>\ref vx_imagepatch_addressing_t</tt>, 
+ with underscores separating the structure from the "vx" prefix  and a "t" to denote that it is a structure. 
+ 
+ Defined Enumerations are names as  \c vx_<i>enum</i>_e, e.g., <tt>\ref vx_type_e</tt>, with underscores separating the enumeration from the
+ "vx" prefix and an "e" to denote that it is an enumerated value. 
+ 
+ Application Programmer's Interfaces are named \c vx<i>SomeFunction</i>() with camel-casing and no underscores, e.g., <tt>\ref vxCreateContext()</tt>.
+
+ Kernels also have a naming convention that follows a lower-case inverse dotted hierarchy
+ similar to Java Packages, e.g.: \code "org.khronos.openvx.color_convert". \endcode
+ 
+ This is done in order to minimize the possibility of name collisions and to
+ promote sorting and readability when querying the namespace of available
+ kernels. Each kernel should have a unique dotted name of the style: <i>tld.vendor.library.kernel</i>.
+ The hierarchy of such kernel namespaces is undefined outside the subdomain "org.khronos", 
+ but should follow existing international standards. For OpenVX-specified kernels, 
+ the "kernel" section of the unique name is not camel-cased and uses underscores to separate words.
+ 
+ \section sec_glossary Glossary and Acronyms
+
+ - FOURCC: a 32-bit representation of an image format which is a combination of four 8-bit character codes.
+ - Atomic: The specification will occasionally mention "atomics" which is used to mean a C primitive data
+type. Usages which have additional wording such as "atomic operations" do not carry this meaning.
+ - Kernel: OpenVX uses the term "kernel" to mean a <i>computer vision function</i>, not an Operating System kernel. 
+ 
+ \section sec_acknowledgements Acknowledgements
+ 
+ Without the contributions from this partial list of the follow individuals from 
+ the Khronos Working Group and the companies which they represented at the time, 
+ this specification would not be possible:
+ 
+ \arg Erik Rainey - Texas Instruments, Inc.
+ \arg Susheel Gautam - QUALCOMM
+ \arg Victor Eruhimov - Itseez
+ \arg Doug Knisely - QUALCOMM
+ \arg Frank Brill - NVIDIA
+ \arg Kari Pulli - NVIDIA
+ \arg Tomer Schwartz - Broadcom Corporation
+ \arg Shervin Emami - NVIDIA
+ \arg Thierry Lepley - STMicroelectronics International NV
+ \arg Olivier Pothier - STMicroelectronics International NV
+ \arg Andy Kuzma - Intel
+ \arg Shorin Kyo - Renasas Electronics
+ \arg Renato Grottesi - ARM Limited
+ \arg Dave Schreiner - ARM Limited
+ \arg Chris Tseng - Texas Instruments, Inc. 
+ \arg Daniel Laroche - Cognivue Corporation
+ \arg Andrew Garrard - Samsung Electronics
+ \arg Tomer Yanir - Samsung Electronics
+ \arg Erez Natan - Samsung Electronics
+ \arg Chang-Hyo Yu - Samsung Electronics
+ \arg Hans-Peter Nilsson - Axis Communications
+ \arg Stephen Neuendorffer - Xilinx, Inc.
+ \arg Amit Shoham - BDTi
+ \arg Paul Buxton - Imagination Technologies
+ \arg Yuki Kobayashi - Renesas Electronics
+ \arg Cormac Brick - Movidius Ltd
+ \arg Mikael Bourges-Sevenier - Aptina Imaging Corporation
+ \arg Tao Zhang - QUALCOMM
+
+ \htmlonly
+ 
+ <h2>Copyright</h2>
+ The Khronos Group 2011-2013. OpenVX&#8482;, OpenCL&#8482;, OpenGL&#8482;, OpenMAX&#8482;, and Open Vision Acceleration&#8482; are trademarks of the Khronos Group&#8482;.
+ 
+ \endhtmlonly
+
+ */

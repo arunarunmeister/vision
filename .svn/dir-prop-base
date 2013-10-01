@@ -1,0 +1,26 @@
+K 10
+svn:ignore
+V 14
+out
+nbproject
+
+K 13
+svn:mergeinfo
+V 679
+/Vision/branches/bitwise_and_math:22016-22078
+/Vision/branches/super_resolution_test:21335-23119
+/Vision/branches/task-9576:20681-23121
+/Vision/branches/task-9580:19729-19784
+/Vision/branches/task-9600:19715-19955
+/Vision/branches/task-9618:19865-19888
+/Vision/branches/task-9738:20434-20482
+/Vision/branches/task-9742:20284-20354
+/Vision/branches/task-9747:19843-20369
+/Vision/branches/task-delay:19802-19864
+/Vision/branches/task-implemenation:19036-19040
+/Vision/branches/task-implementation:19041-19629
+/Vision/branches/task-log:19637-19863
+/Vision/branches/task-memory-upgrade:20889-20915
+/Vision/branches/task-pixel:19630-19633
+/Vision/branches/user_node_tiling:21711-23124
+END
